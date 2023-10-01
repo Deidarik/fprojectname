@@ -19,14 +19,13 @@ public class DefinedIntegral implements MathFunction {
     public enum Signals{
         Funlet, Numb,X,Ls,Lr,xP
     }
-    public void createtable(Conditions c[6][6] ){
+    public void createtable( ){
 
     }
     public static double FindIntegral(String tmpa, String tmpf)
     {
         double r=0;
         List<String> TempA = new LinkedList<String>();
-        Conditions c[6][6];
         for(int j=0;j<tmpa.length();++j)
         {
 
