@@ -8,7 +8,7 @@ class AnalyzeTest {
 
     @Test
     void firstAnalyze() {
-        Analyze an = new Analyze("x+arcsin(x*45*sin(x)*x)");
+        Analyze an = new Analyze("arcsin x + arccos x");
         an.firstAnalyze();
         for(int i = 0; i<an.readyParts.size();i++)
         {
