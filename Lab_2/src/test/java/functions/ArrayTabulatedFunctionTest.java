@@ -1,6 +1,7 @@
 package functions;
 
 import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 public class ArrayTabulatedFunctionTest extends TestCase {
     double[] xValue = {1, 3, 5, 7, 9};
@@ -74,6 +75,16 @@ public class ArrayTabulatedFunctionTest extends TestCase {
     public void testRightBound() {
         assertEquals(9., ar.rightBound());
         assertEquals(100.00000000000001, sar.rightBound());
+    }
+
+    public void testInsert(){
+        ar.insert(11,12);
+        assertEquals(5, ar.indexOfX(11) );
+        ar.insert(6,7);
+        assertEquals(6, ar.indexOfX(11) );
+        ar.insert(0.1,0.2);
+        assertEquals(0, ar.indexOfX(0.1) );
+
     }
 
 }
