@@ -26,4 +26,9 @@ public interface MathFunction {
 
               return f;
        }
+        default CompositeFunction andThen(MathFunction afterFunction)
+       {
+       CompositeFunction cf = new CompositeFunction(this, afterFunction);
+           return cf;
+       }
 }
