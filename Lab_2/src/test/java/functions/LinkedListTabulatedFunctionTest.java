@@ -59,27 +59,39 @@ class LinkedListTabulatedFunctionTest {
 
     @Test
     void getY() {
-        assertEquals(13.0, lltb1.getX(4));
-        assertEquals(1, lltb2.getX(13));
+        assertEquals(130.0, lltb1.getY(4));
+        assertEquals(1, lltb2.getY(13));
     }
 
     @Test
     void setY() {
+        lltb1.setY(0, -12);
+        assertEquals(-12., lltb1.getY(0));
+        lltb2.setY(10, 100.890);
+        assertEquals(100.890, lltb2.getY(10));
     }
 
     @Test
     void indexOfX() {
+        assertEquals(4,lltb1.indexOfX(13));
+        assertEquals(-1,lltb2.indexOfX(13));
     }
 
     @Test
     void indexOfY() {
+        assertEquals(4,lltb1.indexOfY(13));
+        assertEquals(-1,lltb2.indexOfY(13));
     }
 
     @Test
     void leftBound() {
+        assertEquals(1., lltb1.leftBound());
+        assertEquals(1., lltb2.leftBound());
     }
 
     @Test
     void rightBound() {
+        assertEquals(20., lltb1.rightBound());
+        assertEquals(31.999999999999993, lltb2.rightBound());
     }
 }
