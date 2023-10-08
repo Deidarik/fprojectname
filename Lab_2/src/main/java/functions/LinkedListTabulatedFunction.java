@@ -112,40 +112,26 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
     }
 
     public int indexOfX(double x) {
+        int counter = 0;
         Node tmp = head;
-        int left = 0;
-        int right = count - 1;
-        double epsilon = 0.000_000_001;
-
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-
-            if (Math.abs(getNode(mid).x - x) < epsilon)
-                return mid;
-            else if (getNode(mid).x < x)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
+        do{
+            if(tmp.x == x) return counter;
+            counter++;
+            tmp= tmp.next;
+        }while(tmp != head);
         return -1;
     }
 
     public int indexOfY(double y) {
+        int counter = 0;
+
         Node tmp = head;
-        int left = 0;
-        int right = count - 1;
-        double epsilon = 0.000_000_001;
-
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-
-            if (Math.abs(getNode(mid).x - y) < epsilon)
-                return mid;
-            else if (getNode(mid).x < y)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
+        do
+        {
+            if(tmp.y == y) return counter;
+            counter++;
+            tmp = tmp.next;
+        }while(tmp != head);
         return -1;
     }
 

@@ -73,13 +73,13 @@ class LinkedListTabulatedFunctionTest {
 
     @Test
     void indexOfX() {
-        assertEquals(4,lltb1.indexOfX(13));
+        assertEquals(5,lltb1.indexOfX(20));
         assertEquals(-1,lltb2.indexOfX(13));
     }
 
     @Test
     void indexOfY() {
-        assertEquals(4,lltb1.indexOfY(13));
+        assertEquals(5,lltb1.indexOfY(200));
         assertEquals(-1,lltb2.indexOfY(13));
     }
 
