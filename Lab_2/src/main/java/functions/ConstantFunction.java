@@ -7,14 +7,14 @@ public class ConstantFunction implements MathFunction{
         this.x=a;
     }
 
-    double GetX()
+    public double getX()
     {
         return x;
     }
 
     public double apply(double x)
     {
-        return GetX();
+        return getX();
     }
 }
 

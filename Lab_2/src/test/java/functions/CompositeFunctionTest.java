@@ -11,7 +11,7 @@ class CompositeFunctionTest {
         IdentityFunction iF = new IdentityFunction();
         SqrFunction sf = new SqrFunction();
         CompositeFunction cf = new CompositeFunction(iF,sf);
-        CompositeFunction cf2 =  new CompositeFunction(sf,cf);
+        CompositeFunction cf2 = new CompositeFunction(sf,cf);
         double expected = 100;
         double actual = cf.apply(10);
         assertEquals(expected,actual);
