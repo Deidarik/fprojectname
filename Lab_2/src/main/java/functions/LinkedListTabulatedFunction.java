@@ -7,7 +7,7 @@ class Node
     Node(double x,double y){this.x = x; this.y = y;}
     Node(){this.x = 0;this.y = 0;}
 }
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable{
     protected int count;
     private Node head = null;
 
@@ -167,6 +167,18 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
                 return interpolate(x, floorNodeOfX(x));
         }
     }
-
+    public void remove(int index)
+    {
+        Node tmp = head;
+        Node lastTmp;
+        while(index > 0)
+        {
+            tmp = tmp.next;
+            index--;
+        }
+        tmp.prev.next = tmp.next;
+        tmp.next.prev = tmp.prev;
+        count--;
+    }
 
 }

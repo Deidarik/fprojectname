@@ -102,4 +102,14 @@ class LinkedListTabulatedFunctionTest {
         assertEquals(1, lltb1.floorNodeOfX(5.6));
         assertEquals(1, lltb2.floorNodeOfX(6));
     }
+    @Test
+    void remove()
+    {
+        lltb1.remove(1);
+        assertEquals(-1,lltb1.indexOfX(5));
+        lltb1.remove(4);
+        assertEquals(-1,lltb1.indexOfX(20));
+        lltb1.remove(0);
+        assertEquals(-1,lltb1.indexOfX(10));
+    }
 }
