@@ -94,4 +94,12 @@ class LinkedListTabulatedFunctionTest {
         assertEquals(20., lltb1.rightBound());
         assertEquals(31.999999999999993, lltb2.rightBound());
     }
+    @Test
+    void floorNodeOfX()
+    {
+        assertEquals(0, lltb1.floorNodeOfX(1));
+        assertEquals(0, lltb1.floorNodeOfX(-9));
+        assertEquals(1, lltb1.floorNodeOfX(5.6));
+        assertEquals(1, lltb2.floorNodeOfX(6));
+    }
 }
