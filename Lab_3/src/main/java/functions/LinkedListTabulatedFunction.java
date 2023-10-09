@@ -15,6 +15,25 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             this.x = x;
             this.y = y;
         }
+        @Override
+        public String toString()
+        {
+            return("(" + x + ";" + y + ")" );
+        }
+        @Override
+        public boolean equals(Object o) {
+            if (o instanceof TabulatedFunction) {
+                int k =0;
+                if (o instanceof LinkedListTabulatedFunction.Node)
+                    return (x == ((LinkedListTabulatedFunction.Node) o).x) && (y == ((LinkedListTabulatedFunction.Node) o).y);
+                else
+                {
+                    k = (((TabulatedFunction) o).indexOfX(x));
+                    return (x == ((TabulatedFunction) o).getX(k) && (y == ((TabulatedFunction) o).getY(k)));
+                }
+            }
+            return false;
+        }
 
     }
 
@@ -61,7 +80,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         count += 1;
     }
 
-    public Node getNode(int index) {
+    private Node getNode(int index) {
         Node tmp = head;
         int counter;
         if (index <= count / 2) {
@@ -222,7 +241,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         StringBuilder line = new StringBuilder();
         Node tmp = head;
         do{
-            line.append("(").append(tmp.x).append(";").append(tmp.y).append(")").append("\n");
+            line.append(tmp.toString());
             tmp = tmp.next;
 
         }while(tmp != head);
@@ -233,39 +252,33 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     {
 
         Node list = head;
-        if (o instanceof TabulatedFunction){
+        if (o instanceof TabulatedFunction && count == ((TabulatedFunction)o).getCount()){
 
-            if (o instanceof ArrayTabulatedFunction && count == ((ArrayTabulatedFunction) o).getCount()) {
-                int i = 0;
-                do{
-                    if(!(list.x == ((ArrayTabulatedFunction)o).getX(i) && list.y == ((ArrayTabulatedFunction)o).getY(i)))
-                        return false;
-                    i++;
-                    list = list.next;
-                }while(list !=head);
-                return true;
-            }
-            if (o instanceof LinkedListTabulatedFunction && count == ((LinkedListTabulatedFunction) o).getCount()) {
-                Node newList =((LinkedListTabulatedFunction)o).getNode(0);
-                do{
-                    if(!(list.x == newList.x &&  list.y == newList.y))
-                        return false;
-                    list = list.next;
-                    newList = newList.next;
-                }while(list !=head);
-                return true;
-            }
-//            if(o instanceof LinkedListTabulatedFunction.Node)
-//            {
-//                Node newList = (LinkedListTabulatedFunction.Node)o;
+            do{
+                if(!list.equals(o))
+                    return false;
+            }while(list !=head);
+            return true;
+
+//            if (o instanceof ArrayTabulatedFunction && count == ((ArrayTabulatedFunction) o).getCount()) {
+//                int i = 0;
 //                do{
-//                    if(!(list.x == newList.x &&  list.y == newList.y))
+//                    if(!(list.x == ((ArrayTabulatedFunction)o).getX(i) && list.y == ((ArrayTabulatedFunction)o).getY(i)))
 //                        return false;
+//                    i++;
 //                    list = list.next;
-//                    newList = newList.next;
-//                }while(list != head);
+//                }while(list !=head);
 //                return true;
 //            }
+//            if (o instanceof LinkedListTabulatedFunction && count == ((LinkedListTabulatedFunction) o).getCount()) {
+//                Node newList =((LinkedListTabulatedFunction)o).getNode(0);
+//                do{
+//                    if(!list.equals(newList))
+//                        return false;
+//                }while(list !=head);
+//                return true;
+//            }
+
 
         }
         return false;
