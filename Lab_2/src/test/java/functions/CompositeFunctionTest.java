@@ -13,7 +13,7 @@ class CompositeFunctionTest {
         CompositeFunction cf = new CompositeFunction(iF,sf);
         CompositeFunction cf2 =  new CompositeFunction(sf,cf);
         MathFunction test2 = new AcosPlusAsin();
-        MathFunction test = new cosDoubleArg();
+        MathFunction test = new CosDoubleArg();
         MathFunction CosTwoA = test.andThen(test2);
         MathFunction CosInSq = sf.andThen(test);
         double expected = 100;
