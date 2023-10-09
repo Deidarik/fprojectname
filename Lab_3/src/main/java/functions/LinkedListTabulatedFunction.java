@@ -1,23 +1,22 @@
 package functions;
 
-class Node {
-    public Node next, prev;
-    public double y, x;
 
-    Node(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    Node() {
-        this.x = 0;
-        this.y = 0;
-    }
-}
+import java.lang.reflect.Array;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable {
     protected int count;
     private Node head = null;
+
+    static class Node {
+        public Node next, prev;
+        public double y, x;
+
+        Node(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+
+    }
 
     LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
         for (int i = 0; i < xValues.length; ++i) {
@@ -62,7 +61,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         count += 1;
     }
 
-    private Node getNode(int index) {
+    public Node getNode(int index) {
         Node tmp = head;
         int counter;
         if (index <= count / 2) {
@@ -216,5 +215,59 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
         }
         count += 1;
+    }
+    @Override
+    public String toString()
+    {
+        StringBuilder line = new StringBuilder();
+        Node tmp = head;
+        do{
+            line.append("(").append(tmp.x).append(";").append(tmp.y).append(")").append("\n");
+            tmp = tmp.next;
+
+        }while(tmp != head);
+        return line.toString();
+    }
+    @Override
+    public boolean equals(Object o)
+    {
+
+        Node list = head;
+        if (o instanceof TabulatedFunction){
+
+            if (o instanceof ArrayTabulatedFunction && count == ((ArrayTabulatedFunction) o).getCount()) {
+                int i = 0;
+                do{
+                    if(!(list.x == ((ArrayTabulatedFunction)o).getX(i) && list.y == ((ArrayTabulatedFunction)o).getY(i)))
+                        return false;
+                    i++;
+                    list = list.next;
+                }while(list !=head);
+                return true;
+            }
+            if (o instanceof LinkedListTabulatedFunction && count == ((LinkedListTabulatedFunction) o).getCount()) {
+                Node newList =((LinkedListTabulatedFunction)o).getNode(0);
+                do{
+                    if(!(list.x == newList.x &&  list.y == newList.y))
+                        return false;
+                    list = list.next;
+                    newList = newList.next;
+                }while(list !=head);
+                return true;
+            }
+//            if(o instanceof LinkedListTabulatedFunction.Node)
+//            {
+//                Node newList = (LinkedListTabulatedFunction.Node)o;
+//                do{
+//                    if(!(list.x == newList.x &&  list.y == newList.y))
+//                        return false;
+//                    list = list.next;
+//                    newList = newList.next;
+//                }while(list != head);
+//                return true;
+//            }
+
+        }
+        return false;
     }
 }
