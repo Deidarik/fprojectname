@@ -1,9 +1,9 @@
 package functions;
 import java.util.Arrays;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
-    private final double[] xValues;
-    private final double[] yValues;
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable{
+    private double[] xValues;
+    private double[] yValues;
 
     ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         this.xValues = Arrays.copyOf(xValues, xValues.length);
@@ -99,5 +99,43 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     public double rightBound() {
         return xValues[count - 1];
+    }
+    public void insert(double x, double y)
+    {
+        double[] newXValues = new double[count+1],newYValues = new double[count+1];
+
+        int index = indexOfX(x);
+        if(index != -1)
+            yValues[index] = y;
+        else{
+            index = floorIndexOfX(x);
+            if(index != count && index !=0) {
+                System.arraycopy(xValues, 0, newXValues, 0, index+1);
+                newXValues[index + 1] = x;
+                System.arraycopy(xValues, index+1, newXValues, index + 2, count - index-1 );
+
+                System.arraycopy(yValues, 0, newYValues, 0, index+1);
+                newYValues[index + 1] = y;
+                System.arraycopy(yValues, index+1, newYValues, index + 2, count - index-1 );
+            }else if(index == count) {
+                System.arraycopy(xValues, 0, newXValues, 0, count);
+                newXValues[index] = x;
+
+                System.arraycopy(yValues, 0, newYValues, 0, count);
+                newYValues[index] = y;
+            }
+            else
+            {
+                System.arraycopy(xValues, 0, newXValues, 1, count);
+                newXValues[index] = x;
+
+                System.arraycopy(yValues, 0, newYValues, 1, count);
+                newYValues[index] = y;
+            }
+            count++;
+            xValues = Arrays.copyOf(newXValues, count);
+            yValues = Arrays.copyOf(newYValues, count);
+
+        }
     }
 }
