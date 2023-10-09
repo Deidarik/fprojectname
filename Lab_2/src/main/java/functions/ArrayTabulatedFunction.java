@@ -163,4 +163,20 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
             yValues = Arrays.copyOf(newYValues, count);
 
         }
+
+    public double apply(double x) {
+        if (x < leftBound())
+            return extrapolateLeft(x);
+        else if (x > rightBound())
+            return extrapolateRight(x);
+        else {
+            int searchIndexOfX = indexOfX(x);
+
+            if (searchIndexOfX != -1)
+                return getY(searchIndexOfX);
+            else
+                return interpolate(x, floorIndexOfX(x));
+        }
+    }
+
     }
