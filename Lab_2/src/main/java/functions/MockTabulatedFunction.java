@@ -6,17 +6,17 @@ public class MockTabulatedFunction extends AbstractTabulatedFunction {
 
     public MockTabulatedFunction() {
         xValue = new double[]{0, 1};
-        yValue = new double[]{1, 0};
+        yValue = new double[]{0, 1};
         count = 2;
     }
 
     protected int floorIndexOfX(double x) {
         if (x < 0)
-            return 0;
+            return -1;
         else if (x < 1)
             return 0;
         else
-            return 2;
+            return 1;
     }
 
     protected double extrapolateLeft(double x) {
@@ -57,9 +57,9 @@ public class MockTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public int indexOfY(double y) {
-        if (y == 1)
+        if (y == 0)
             return 0;
-        else if (y == 0)
+        else if (y == 1)
             return 1;
         else
             return -1;
