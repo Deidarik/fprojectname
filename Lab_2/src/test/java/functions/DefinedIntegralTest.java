@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DefinedIntegralTest {
 
-    MathFunction e = new cosDoubleArg();
+    MathFunction e = new CosDoubleArg();
 
     MathFunction s = new SqrFunction();
 

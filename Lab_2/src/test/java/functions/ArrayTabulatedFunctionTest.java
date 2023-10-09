@@ -87,4 +87,10 @@ public class ArrayTabulatedFunctionTest extends TestCase {
 
     }
 
+
+    public void testremove()
+    {
+        ar.remove(2);
+        assertEquals(7., ar.getX(2));
+    }
 }

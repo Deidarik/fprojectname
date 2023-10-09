@@ -138,4 +138,29 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
         }
     }
-}
+    public void remove(int index)
+    {
+        double[] newXValues = new double[count-1],newYValues = new double[count-1];
+            if(index != count && index !=0) {
+                System.arraycopy(xValues, 0, newXValues, 0, index-1);
+                System.arraycopy(xValues, index+1, newXValues, index, count - index-1 );
+
+                System.arraycopy(yValues, 0, newYValues, 0, index-1);
+                System.arraycopy(yValues, index+1, newYValues, index, count - index-1 );
+            }else if(index == count) {
+                System.arraycopy(xValues, 0, newXValues, 0, count-2);
+
+                System.arraycopy(yValues, 0, newYValues, 0, count-2);
+            }
+            else
+            {
+                System.arraycopy(xValues, 1, newXValues, 0, count-1);
+
+                System.arraycopy(yValues, 1, newYValues, 0, count-1);
+            }
+            count--;
+            xValues = Arrays.copyOf(newXValues, count);
+            yValues = Arrays.copyOf(newYValues, count);
+
+        }
+    }
