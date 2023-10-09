@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class cosDoubleArgTest {
-MathFunction f = new cosDoubleArg();
+class CosDoubleArgTest {
+MathFunction f = new CosDoubleArg();
 @Test
     public void testEquals()
 {
