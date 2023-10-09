@@ -180,5 +180,30 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         tmp.next.prev = tmp.prev;
         count--;
     }
+public void insert(double x, double y)
+{
+if(head==null)
+{
+    addNode(x,y);
+}
+else
+{
+    double tmpcount = 0;
+    Node tmp = head;
+    while(x>tmp.x&&tmpcount<count){ tmpcount++; tmp = tmp.next;}
+    Node tmp1 = new Node(x,y);
+    Node tmp2 = tmp1;
+   tmp2= tmp.prev.next;
+    tmp.prev.next = tmp1;
+    tmp1.next = tmp2;
+    tmp1.prev = tmp.prev;
+    tmp2.prev = tmp1;
+    if(tmpcount==0) //случай, что вне левой гр
+    {
+     head = tmp1;
+    }
 
+}
+count+=1;
+}
 }

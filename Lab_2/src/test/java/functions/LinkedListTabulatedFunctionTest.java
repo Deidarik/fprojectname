@@ -112,4 +112,14 @@ class LinkedListTabulatedFunctionTest {
         lltb1.remove(0);
         assertEquals(-1,lltb1.indexOfX(10));
     }
+
+    @Test
+    void insert()
+    {
+        lltb1.insert(4, 40);
+        assertEquals(1, lltb1.indexOfX(4));
+        lltb1.insert(-1, -100);
+        lltb1.insert(21, 3000);
+        assertEquals(8, lltb1.indexOfX(21));
+    }
 }
