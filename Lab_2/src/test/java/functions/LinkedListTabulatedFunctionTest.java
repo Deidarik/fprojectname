@@ -11,115 +11,132 @@ class LinkedListTabulatedFunctionTest {
 
     SqrFunction sf = new SqrFunction();
 
-    LinkedListTabulatedFunction lltb1 = new LinkedListTabulatedFunction(xValues,yValues);
-    LinkedListTabulatedFunction lltb2 = new LinkedListTabulatedFunction(sf,1,30,13);
+    LinkedListTabulatedFunction testListArray = new LinkedListTabulatedFunction(xValues,yValues);
+    LinkedListTabulatedFunction testListArray2 = new LinkedListTabulatedFunction(xValues,yValues);
+    LinkedListTabulatedFunction testListFunc= new LinkedListTabulatedFunction(sf,1,30,13);
     @Test
     void floorIndexOfX() {
-        assertEquals(0, lltb1.floorIndexOfX(1));
-        assertEquals(0, lltb1.floorIndexOfX(-9));
-        assertEquals(1, lltb1.floorIndexOfX(5.6));
-        assertEquals(1, lltb2.floorIndexOfX(6));
+        assertEquals(0, testListArray .floorIndexOfX(1));
+        assertEquals(0, testListArray .floorIndexOfX(-9));
+        assertEquals(1, testListArray .floorIndexOfX(5.6));
+        assertEquals(1, testListFunc.floorIndexOfX(6));
     }
 
     @Test
     void extrapolateLeft() {
-        assertEquals(0,lltb1.extrapolateLeft(0));
-        assertEquals(30,lltb1.extrapolateLeft(3));
-        assertEquals(-10,lltb1.extrapolateLeft(-1));
-        assertEquals(6.958333333333332,lltb2.extrapolateLeft(2.3));
+        assertEquals(0,testListArray .extrapolateLeft(0));
+        assertEquals(30,testListArray .extrapolateLeft(3));
+        assertEquals(-10,testListArray .extrapolateLeft(-1));
+        assertEquals(6.958333333333332,testListFunc.extrapolateLeft(2.3));
 
     }
 
     @Test
     void extrapolateRight() {
-        assertEquals(0, lltb1.extrapolateLeft(0));
-        assertEquals(-10.0, lltb1.extrapolateLeft(-1));
-        assertEquals(11.083333333333334, lltb2.extrapolateLeft(3.2));
+        assertEquals(0, testListArray .extrapolateLeft(0));
+        assertEquals(-10.0, testListArray .extrapolateLeft(-1));
+        assertEquals(11.083333333333334, testListFunc.extrapolateLeft(3.2));
     }
 
     @Test
     void interpolate() {
-        assertEquals(22.5, lltb1.interpolate(2.25, lltb1.floorIndexOfX(3)));
-        assertEquals(12, lltb1.interpolate(1.2, lltb2.floorIndexOfX(1.3)));
-        assertEquals(-21.141666666666673, lltb2.interpolate(2.2, lltb1.floorIndexOfX(9)));
-        assertEquals(29.57499999999999, lltb2.interpolate(5.6, lltb2.floorIndexOfX(8.7)));
+        assertEquals(22.5, testListArray .interpolate(2.25, testListArray .floorIndexOfX(3)));
+        assertEquals(12, testListArray .interpolate(1.2, testListFunc.floorIndexOfX(1.3)));
+        assertEquals(-21.141666666666673, testListFunc.interpolate(2.2, testListArray .floorIndexOfX(9)));
+        assertEquals(29.57499999999999, testListFunc.interpolate(5.6, testListFunc.floorIndexOfX(8.7)));
     }
 
     @Test
     void getCount() {
-        assertEquals(6, lltb1.getCount());
-        assertEquals(26, lltb2.getCount());
+        assertEquals(6, testListArray .getCount());
+        assertEquals(26, testListFunc.getCount());
     }
 
     @Test
     void getX() {
-        assertEquals(1, lltb1.getX(0));
-        assertEquals(8.75, lltb2.getX(3));
+        assertEquals(1, testListArray .getX(0));
+        assertEquals(8.75, testListFunc.getX(3));
     }
 
     @Test
     void getY() {
-        assertEquals(130.0, lltb1.getY(4));
-        assertEquals(1, lltb2.getY(13));
+        assertEquals(130.0, testListArray .getY(4));
+        assertEquals(1, testListFunc.getY(13));
     }
 
     @Test
     void setY() {
-        lltb1.setY(0, -12);
-        assertEquals(-12., lltb1.getY(0));
-        lltb2.setY(10, 100.890);
-        assertEquals(100.890, lltb2.getY(10));
+        testListArray .setY(0, -12);
+        assertEquals(-12., testListArray .getY(0));
+        testListFunc.setY(10, 100.890);
+        assertEquals(100.890, testListFunc.getY(10));
     }
 
     @Test
     void indexOfX() {
-        assertEquals(5,lltb1.indexOfX(20));
-        assertEquals(-1,lltb2.indexOfX(13));
+        assertEquals(5,testListArray .indexOfX(20));
+        assertEquals(-1,testListFunc.indexOfX(13));
     }
 
     @Test
     void indexOfY() {
-        assertEquals(5,lltb1.indexOfY(200));
-        assertEquals(-1,lltb2.indexOfY(13));
+        assertEquals(5,testListArray .indexOfY(200));
+        assertEquals(-1,testListFunc.indexOfY(13));
     }
 
     @Test
     void leftBound() {
-        assertEquals(1., lltb1.leftBound());
-        assertEquals(1., lltb2.leftBound());
+        assertEquals(1., testListArray .leftBound());
+        assertEquals(1., testListFunc.leftBound());
     }
 
     @Test
     void rightBound() {
-        assertEquals(20., lltb1.rightBound());
-        assertEquals(31.999999999999993, lltb2.rightBound());
+        assertEquals(20., testListArray .rightBound());
+        assertEquals(31.999999999999993, testListFunc.rightBound());
     }
     @Test
     void floorNodeOfX()
     {
-        assertEquals(0, lltb1.floorNodeOfX(1));
-        assertEquals(0, lltb1.floorNodeOfX(-9));
-        assertEquals(1, lltb1.floorNodeOfX(5.6));
-        assertEquals(1, lltb2.floorNodeOfX(6));
+        assertEquals(0, testListArray .floorNodeOfX(1));
+        assertEquals(0, testListArray .floorNodeOfX(-9));
+        assertEquals(1, testListArray .floorNodeOfX(5.6));
+        assertEquals(1, testListFunc.floorNodeOfX(6));
     }
     @Test
     void remove()
     {
-        lltb1.remove(1);
-        assertEquals(-1,lltb1.indexOfX(5));
-        lltb1.remove(4);
-        assertEquals(-1,lltb1.indexOfX(20));
-        lltb1.remove(0);
-        assertEquals(-1,lltb1.indexOfX(1));
+        testListArray .remove(1);
+        assertEquals(-1,testListArray .indexOfX(5));
+        testListArray .remove(4);
+        assertEquals(-1,testListArray .indexOfX(20));
+        testListArray .remove(0);
+        assertEquals(-1,testListArray .indexOfX(1));
     }
 
     @Test
     void insert()
     {
-        lltb1.insert(4, 40);
-        assertEquals(1, lltb1.indexOfX(4));
-        lltb1.insert(-1, -100);
-        lltb1.insert(21, 3000);
-        assertEquals(8, lltb1.indexOfX(21));
+        testListArray .insert(4, 40);
+        assertEquals(1, testListArray .indexOfX(4));
+        testListArray .insert(-1, -100);
+        testListArray .insert(21, 3000);
+        assertEquals(8, testListArray .indexOfX(21));
+    }
+    @Test
+    void tostring(){
+        String t = testListArray.toString();
+        assertEquals(t, testListArray.toString());
+        t = testListFunc.toString();
+        assertEquals(t, testListFunc.toString());
+    }
+    @Test
+    void equals(){
+
+        assertEquals(false,testListArray.equals(testListFunc));
+        assertEquals(true,testListArray.equals(testListArray2));
+
+
+
     }
 }
