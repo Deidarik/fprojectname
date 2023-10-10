@@ -1,23 +1,41 @@
 package functions;
 
-class Node {
-    public Node next, prev;
-    public double y, x;
 
-    Node(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    Node() {
-        this.x = 0;
-        this.y = 0;
-    }
-}
+import java.lang.reflect.Array;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable {
     protected int count;
     private Node head = null;
+
+    static class Node {
+        public Node next, prev;
+        public double y, x;
+
+        Node(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+        @Override
+        public String toString()
+        {
+            return("(" + x + ";" + y + ")" );
+        }
+        @Override
+        public boolean equals(Object o) {
+            if (o instanceof TabulatedFunction) {
+                int k =0;
+                if (o instanceof LinkedListTabulatedFunction.Node)
+                    return (x == ((LinkedListTabulatedFunction.Node) o).x) && (y == ((LinkedListTabulatedFunction.Node) o).y);
+                else
+                {
+                    k = (((TabulatedFunction) o).indexOfX(x));
+                    return (x == ((TabulatedFunction) o).getX(k) && (y == ((TabulatedFunction) o).getY(k)));
+                }
+            }
+            return false;
+        }
+
+    }
 
     LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
         for (int i = 0; i < xValues.length; ++i) {
@@ -33,7 +51,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             xTo = xFrom;
             xFrom = tmp;
         }
-    
+
         this.count = count;
 
         double step = (xFrom + xTo) / (count - 1);
@@ -216,5 +234,33 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
         }
         count += 1;
+    }
+    @Override
+    public String toString()
+    {
+        StringBuilder line = new StringBuilder();
+        Node tmp = head;
+        do{
+            line.append(tmp.toString());
+            tmp = tmp.next;
+
+        }while(tmp != head);
+        return line.toString();
+    }
+    @Override
+    public boolean equals(Object o)
+    {
+
+        Node list = head;
+        if (o instanceof TabulatedFunction && count == ((TabulatedFunction)o).getCount()){
+
+            do{
+                if(!list.equals(o))
+                    return false;
+            }while(list !=head);
+            return true;
+
+        }
+        return false;
     }
 }
