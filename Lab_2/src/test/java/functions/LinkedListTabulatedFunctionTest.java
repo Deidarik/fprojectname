@@ -155,9 +155,15 @@ class LinkedListTabulatedFunctionTest  {
     }
     @Test
     void nodeClone() throws CloneNotSupportedException {
+        double[] xValues =  {1};
+        double[] yValues = {2};
+
         LinkedListTabulatedFunction.Node n = (testListArray.getNode(0)).clone();
         assertEquals(true, n.prev.equals(testListArray.getNode(0).prev));
-        //допилить тесть с одним нодом, скорее-всего не будет работать(ладно я починил, сейчас должно работать, но надо проверить)
+        testListArray2 = new LinkedListTabulatedFunction(xValues,yValues);
+        LinkedListTabulatedFunction.Node n1 = (testListArray.getNode(0)).clone();
+        assertEquals(true, n1.prev.equals(testListArray.getNode(0).prev));
+
 
     }
     @Test
