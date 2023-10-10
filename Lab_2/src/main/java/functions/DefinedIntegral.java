@@ -35,6 +35,8 @@ public class DefinedIntegral implements MathFunction {
         return (Math.round(area*1000.0)/1000.0)*modifier;
     }
     public double apply(double x) {
-        return integrate( x);
+        double res = integrate( x);
+        area=0;
+        return res;
     }
 }
