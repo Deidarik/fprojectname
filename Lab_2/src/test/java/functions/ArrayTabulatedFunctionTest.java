@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 public class ArrayTabulatedFunctionTest extends TestCase {
     double[] xValue = {1, 3, 5, 7, 9};
     double[] yValue = {2, 4, 6, 8, 10};
+    double[] xVal = {0,1,2,3};
+    double[] yVal = {0,1,2,3};
 
     MathFunction sqrFunction = new SqrFunction();
 
@@ -92,5 +94,40 @@ public class ArrayTabulatedFunctionTest extends TestCase {
     {
         ar.remove(2);
         assertEquals(7., ar.getX(2));
+    }
+
+    ArrayTabulatedFunction test_to_obj_methods = new ArrayTabulatedFunction(xVal, yVal);
+    @Test
+    public void toStringTest(){
+     String inside_array = "| x = 0.0 y = 0.0 |\n| x = 1.0 y = 1.0 |\n| x = 2.0 y = 2.0 |\n| x = 3.0 y = 3.0 |\n";
+     assertEquals(inside_array,test_to_obj_methods.toString() );
+    }
+
+    Object test_to_obj_methods_new = new ArrayTabulatedFunction(xVal, yVal);
+    @Test
+    public void equalsTest()
+    {
+        assertFalse(test_to_obj_methods.equals(ar));
+        assertTrue(test_to_obj_methods.equals(test_to_obj_methods));
+        assertFalse(test_to_obj_methods.equals(sqrFunction));
+        assertTrue(test_to_obj_methods.equals(test_to_obj_methods_new));
+    }
+
+    @Test
+    public void hashCodeTest()
+    {
+        int square_array_hash = sar.hashCode();
+        int test_to_obj_methods_hash = test_to_obj_methods.hashCode();
+        int test_to_obj_methods_new_hash = test_to_obj_methods_new.hashCode();
+        assertEquals(test_to_obj_methods_hash, test_to_obj_methods_new_hash);
+        assertFalse(square_array_hash ==test_to_obj_methods_hash );
+    }
+    @Test
+    public void cloneTest() throws CloneNotSupportedException
+    {
+Object copied_sar = sar.clone();
+    assertEquals(sar, copied_sar);
+    Object copied_test_to_obj_methods = test_to_obj_methods.clone();
+    assertEquals(test_to_obj_methods, copied_test_to_obj_methods);
     }
 }
