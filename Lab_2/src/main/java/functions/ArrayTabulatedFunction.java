@@ -1,9 +1,12 @@
 package functions;
 import java.util.Arrays;
+import java.util.Random;
+import java.lang.*;
+import java.lang.Object;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable{
-    private double[] xValues;
-    private double[] yValues;
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable, Cloneable{
+    private double[] xValues = null;
+    private double[] yValues = null;
 
     ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         this.xValues = Arrays.copyOf(xValues, xValues.length);
@@ -177,6 +180,76 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
             else
                 return interpolate(x, floorIndexOfX(x));
         }
+    }
+
+    @Override
+
+    public String toString(){
+        String inside_array = "";
+        if(this.xValues!=null&&this.yValues!=null)
+        {
+            double a;
+         for( int i =0; i<count;++i) inside_array+= '|' + " x = " + String.valueOf(getX(i)) + " y = " + String.valueOf(getY(i)) + " |\n";
+        }
+        else inside_array = "There is no array";
+        return inside_array;
+    }
+
+   @Override
+
+    public boolean equals(Object o)
+    {
+        boolean comparison = true;
+        if(this==o) return true;
+        if(o.getClass()!=getClass()) comparison = false;
+        else{
+            if(this.xValues!=null&&this.yValues!=null)
+            {
+               if (((ArrayTabulatedFunction)o).xValues!=null&&((ArrayTabulatedFunction)o).yValues!=null)
+               {
+                   if(this.count!=((ArrayTabulatedFunction)o).count) return false;
+                for(int i=0; i<this.count;++i)
+                {
+                    if(this.getX(i)!=(((ArrayTabulatedFunction)o).getX(i))|| (this.getY(i)!=(((ArrayTabulatedFunction)o).getY(i))))
+                        return false;
+                }
+               }
+               else
+               {
+                   comparison = false;
+               }
+            }
+            else
+            {
+                if(((ArrayTabulatedFunction)o).xValues==null&&((ArrayTabulatedFunction)o).yValues==null) comparison = true;
+                 else comparison = false;
+            }
+        }
+        return comparison;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int res = 0;
+        int MAX = 2^31-1;
+        if(this.xValues!=null&&this.yValues!=null)
+        {
+
+            for(double tmpY:yValues) res +=MAX^(int)tmpY;
+        }
+        else {
+            Random R1 = new Random(2^31-1);
+            res= R1.nextInt();
+        }
+
+        return res;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
     }
 
     }
