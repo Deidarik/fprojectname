@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LinkedListTabulatedFunctionTest {
+class LinkedListTabulatedFunctionTest  {
 
     double[] xValues = {1,5,7,9,13,20};
     double[] yValues = {10,50,70,90,130,200};
@@ -124,19 +124,56 @@ class LinkedListTabulatedFunctionTest {
         assertEquals(8, testListArray .indexOfX(21));
     }
     @Test
-    void tostring(){
+    void toStringListTest(){
         String t = testListArray.toString();
         assertEquals(t, testListArray.toString());
         t = testListFunc.toString();
         assertEquals(t, testListFunc.toString());
     }
     @Test
-    void equals(){
+    void toStringNodeTest(){
+        String t = testListArray.getNode(0).toString();
+        assertEquals(t, testListArray.getNode(0).toString());
+        t = testListFunc.getNode(0).toString();
+        assertEquals(t, testListFunc.getNode(0).toString());
+    }
+
+    @Test
+    void equalsLists(){
 
         assertEquals(false,testListArray.equals(testListFunc));
         assertEquals(true,testListArray.equals(testListArray2));
 
+    }
+    @Test
+    void equalsNodes(){
+        assertEquals(false,testListArray.getNode(0).equals(testListArray.getNode(4)));
+        assertEquals(true,testListArray.getNode(0).equals(testListArray.getNode(0)));
+        assertEquals(false,testListArray.getNode(0).equals(testListFunc.getNode(0)));
 
+
+    }
+    @Test
+    void nodeClone() throws CloneNotSupportedException {
+        LinkedListTabulatedFunction.Node n = (testListArray.getNode(0)).clone();
+        assertEquals(true, n.prev.equals(testListArray.getNode(0).prev));
+        //допилить тесть с одним нодом, скорее-всего не будет работать(ладно я починил, сейчас должно работать, но надо проверить)
+
+    }
+    @Test
+    void listClone() throws CloneNotSupportedException{
+        LinkedListTabulatedFunction clone = testListArray.clone();
+        LinkedListTabulatedFunction clone2nd = clone.clone();
+        assertEquals(true,testListArray.equals(clone));
+        assertEquals(true,clone.equals(testListArray));
+        assertEquals(true,testListArray.equals(clone2nd));
+
+    }
+    @Test
+    void hashCodeTest(){
+        assertEquals(-1945403471,testListArray.hashCode());
+        assertEquals(-1945403471,testListArray2.hashCode());
+        assertEquals(-716218838,testListFunc.hashCode());
 
     }
 }
