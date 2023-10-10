@@ -145,6 +145,7 @@ class LinkedListTabulatedFunctionTest  {
         assertEquals(true,testListArray.equals(testListArray2));
 
     }
+
     @Test
     void equalsNodes(){
         assertEquals(false,testListArray.getNode(0).equals(testListArray.getNode(4)));
