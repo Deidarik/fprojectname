@@ -316,6 +316,10 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     @Override
     public LinkedListTabulatedFunction clone() throws CloneNotSupportedException {
-        return (LinkedListTabulatedFunction) super.clone();
+        LinkedListTabulatedFunction list = (LinkedListTabulatedFunction) super.clone();
+        list.head = head.clone();
+        return list;
+
     }
+
 }
