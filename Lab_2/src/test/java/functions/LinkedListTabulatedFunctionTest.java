@@ -17,7 +17,7 @@ class LinkedListTabulatedFunctionTest  {
     @Test
     void floorIndexOfX() {
         assertEquals(0, testListArray .floorIndexOfX(1));
-        assertEquals(0, testListArray .floorIndexOfX(-9));
+        assertEquals(0, testListArray .floorIndexOfX(4));
         assertEquals(1, testListArray .floorIndexOfX(5.6));
         assertEquals(1, testListFunc.floorIndexOfX(6));
     }
@@ -53,19 +53,19 @@ class LinkedListTabulatedFunctionTest  {
     }
 
     @Test
-    void getX() {
+    void getX() throws IllegalAccessException{
         assertEquals(1, testListArray .getX(0));
         assertEquals(8.75, testListFunc.getX(3));
     }
 
     @Test
-    void getY() {
+    void getY() throws IllegalAccessException {
         assertEquals(130.0, testListArray .getY(4));
         assertEquals(1, testListFunc.getY(13));
     }
 
     @Test
-    void setY() {
+    void setY() throws IllegalAccessException {
         testListArray .setY(0, -12);
         assertEquals(-12., testListArray .getY(0));
         testListFunc.setY(10, 100.890);
@@ -99,7 +99,7 @@ class LinkedListTabulatedFunctionTest  {
     void floorNodeOfX()
     {
         assertEquals(0, testListArray .floorNodeOfX(1));
-        assertEquals(0, testListArray .floorNodeOfX(-9));
+        assertEquals(2, testListArray .floorNodeOfX(9));
         assertEquals(1, testListArray .floorNodeOfX(5.6));
         assertEquals(1, testListFunc.floorNodeOfX(6));
     }
@@ -180,5 +180,48 @@ class LinkedListTabulatedFunctionTest  {
         assertEquals(-1945403471,testListArray2.hashCode());
         assertEquals(-716218838,testListFunc.hashCode());
 
+    }
+    @Test
+    void getNodeException() throws IllegalArgumentException
+    {
+        try{
+            testListArray.getNode(100);
+            testListArray.getNode(-100);
+            fail("Expected IllegalArgumentException");
+
+        }catch(IllegalArgumentException exception)
+        {
+            assertNotEquals("", exception.getMessage());
+        }
+
+    }
+    @Test
+    void testConstructor() throws IllegalArgumentException{
+        try{
+            LinkedListTabulatedFunction testList = new LinkedListTabulatedFunction(new double[]{1},new double[]{2});
+            fail("Expected IllegalArgumentException");
+        }catch (IllegalArgumentException exception){
+            assertNotEquals("", exception.getMessage());
+        }
+    }
+    @Test
+    void testFloorNodeNIndexOfX() throws IllegalArgumentException {
+        try{
+            testListArray.floorIndexOfX(-100);
+            fail("Expected IllegalArgumentException");
+        }catch (IllegalArgumentException exception)
+        {
+            assertNotEquals("",exception.getMessage());
+        }
+    }
+    @Test
+    void testRemoveException() throws IllegalArgumentException{
+        try{
+            testListArray.remove(-100);
+            fail("Expected IllegalArgumentException");
+        }catch (IllegalArgumentException exception)
+        {
+            assertNotEquals("",exception.getMessage());
+        }
     }
 }

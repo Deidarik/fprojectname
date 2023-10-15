@@ -8,13 +8,18 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     private double[] xValues = null;
     private double[] yValues = null;
 
-    ArrayTabulatedFunction(double[] xValues, double[] yValues) {
-        this.xValues = Arrays.copyOf(xValues, xValues.length);
-        this.yValues = Arrays.copyOf(yValues, yValues.length);
+    ArrayTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException{
+        int size = xValues.length;
+        if (size < 2)
+            throw new IllegalArgumentException("Size of array less than 2!");
+        this.xValues = Arrays.copyOf(xValues, size);
+        this.yValues = Arrays.copyOf(yValues, size);
         count = xValues.length;
     }
 
-    ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+    ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) throws IllegalArgumentException {
+        if (count <2)
+            throw new IllegalArgumentException("Size of array less than 2!");
         if (xFrom > xTo) {
             double tmp;
             tmp = xTo;
@@ -34,8 +39,10 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
             xCordinate += step;
         }
     }
-    protected int floorIndexOfX(double x) {
+    protected int floorIndexOfX(double x) throws IllegalArgumentException{
         int index = 0;
+        if (x < leftBound())
+            throw new IllegalArgumentException("Arg less than left bound of the array!");
         while (index < count && xValues[index] < x) ++index;
         return (index == count || index == 0) ? index : --index;
     }
@@ -48,10 +55,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     }
 
     protected double interpolate(double x, int floorIndex) {
-        if (count == 1)
-            return yValues[0];
-        else
-            return interpolate(x, getX(floorIndex), getX(floorIndex + 1), getY(floorIndex), getY(floorIndex + 1));
+        return interpolate(x, getX(floorIndex), getX(floorIndex + 1), getY(floorIndex), getY(floorIndex + 1));
     }
 
     public int getCount() {
@@ -141,31 +145,34 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
         }
     }
-    public void remove(int index)
+    public void remove(int index) throws IllegalArgumentException
     {
+        if(index > count || index < 0)
+            throw new IllegalArgumentException("Element with index = " + index + " doesn't exist");
+
         double[] newXValues = new double[count-1],newYValues = new double[count-1];
-            if(index != count && index !=0) {
-                System.arraycopy(xValues, 0, newXValues, 0, index-1);
-                System.arraycopy(xValues, index+1, newXValues, index, count - index-1 );
+        if(index != count && index !=0) {
+            System.arraycopy(xValues, 0, newXValues, 0, index-1);
+            System.arraycopy(xValues, index+1, newXValues, index, count - index-1 );
 
-                System.arraycopy(yValues, 0, newYValues, 0, index-1);
-                System.arraycopy(yValues, index+1, newYValues, index, count - index-1 );
-            }else if(index == count) {
-                System.arraycopy(xValues, 0, newXValues, 0, count-2);
+            System.arraycopy(yValues, 0, newYValues, 0, index-1);
+            System.arraycopy(yValues, index+1, newYValues, index, count - index-1 );
+        }else if(index == count) {
+            System.arraycopy(xValues, 0, newXValues, 0, count-2);
 
-                System.arraycopy(yValues, 0, newYValues, 0, count-2);
-            }
-            else
-            {
-                System.arraycopy(xValues, 1, newXValues, 0, count-1);
-
-                System.arraycopy(yValues, 1, newYValues, 0, count-1);
-            }
-            count--;
-            xValues = Arrays.copyOf(newXValues, count);
-            yValues = Arrays.copyOf(newYValues, count);
-
+            System.arraycopy(yValues, 0, newYValues, 0, count-2);
         }
+        else
+        {
+            System.arraycopy(xValues, 1, newXValues, 0, count-1);
+
+            System.arraycopy(yValues, 1, newYValues, 0, count-1);
+        }
+        count--;
+        xValues = Arrays.copyOf(newXValues, count);
+        yValues = Arrays.copyOf(newYValues, count);
+
+    }
 
     public double apply(double x) {
         if (x < leftBound())
@@ -186,12 +193,10 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
     public String toString(){
         String inside_array = "";
-        if(this.xValues!=null&&this.yValues!=null)
-        {
-            double a;
-         for( int i =0; i<count;++i) inside_array+= '|' + " x = " + String.valueOf(getX(i)) + " y = " + String.valueOf(getY(i)) + " |\n";
-        }
-        else inside_array = "There is no array";
+
+        for( int i =0; i<count;++i) inside_array+= '|' + " x = " + String.valueOf(getX(i)) + " y = " + String.valueOf(getY(i)) + " |\n";
+
+
         return inside_array;
     }
 
@@ -199,33 +204,18 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
     public boolean equals(Object o)
     {
+
         boolean comparison = true;
         if(this==o) return true;
-        if(o.getClass()!=getClass()) comparison = false;
+        if(o.getClass()!=getClass()) return false;
         else{
-            if(this.xValues!=null&&this.yValues!=null)
-            {
-               if (((ArrayTabulatedFunction)o).xValues!=null&&((ArrayTabulatedFunction)o).yValues!=null)
-               {
-                   if(this.count!=((ArrayTabulatedFunction)o).count) return false;
-                for(int i=0; i<this.count;++i)
-                {
-                    if(this.getX(i)!=(((ArrayTabulatedFunction)o).getX(i))|| (this.getY(i)!=(((ArrayTabulatedFunction)o).getY(i))))
-                        return false;
-                }
-               }
-               else
-               {
-                   comparison = false;
-               }
-            }
-            else
-            {
-                if(((ArrayTabulatedFunction)o).xValues==null&&((ArrayTabulatedFunction)o).yValues==null) comparison = true;
-                 else comparison = false;
+            if(this.count!=((ArrayTabulatedFunction)o).count) return false;
+            for(int i=0; i<this.count;++i) {
+                if(this.getX(i)!=(((ArrayTabulatedFunction)o).getX(i))|| (this.getY(i)!=(((ArrayTabulatedFunction)o).getY(i))))
+                    return false;
             }
         }
-        return comparison;
+        return true;
     }
 
     @Override

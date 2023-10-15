@@ -10,6 +10,7 @@ public class ArrayTabulatedFunctionTest extends TestCase {
     double[] yVal = {0,1,2,3};
 
     MathFunction sqrFunction = new SqrFunction();
+    ArrayTabulatedFunction test_to_obj_methods = new ArrayTabulatedFunction(xVal, yVal);
 
     ArrayTabulatedFunction ar = new ArrayTabulatedFunction(xValue, yValue);
     ArrayTabulatedFunction sar =  new ArrayTabulatedFunction(sqrFunction, 0, 100, 10);
@@ -90,21 +91,20 @@ public class ArrayTabulatedFunctionTest extends TestCase {
     }
 
 
-    public void testremove()
+    public void testRemove()
     {
         ar.remove(2);
         assertEquals(7., ar.getX(2));
     }
 
-    ArrayTabulatedFunction test_to_obj_methods = new ArrayTabulatedFunction(xVal, yVal);
-    @Test
+
     public void toStringTest(){
      String inside_array = "| x = 0.0 y = 0.0 |\n| x = 1.0 y = 1.0 |\n| x = 2.0 y = 2.0 |\n| x = 3.0 y = 3.0 |\n";
      assertEquals(inside_array,test_to_obj_methods.toString() );
     }
 
     Object test_to_obj_methods_new = new ArrayTabulatedFunction(xVal, yVal);
-    @Test
+
     public void equalsTest()
     {
         assertFalse(test_to_obj_methods.equals(ar));
@@ -113,7 +113,7 @@ public class ArrayTabulatedFunctionTest extends TestCase {
         assertTrue(test_to_obj_methods.equals(test_to_obj_methods_new));
     }
 
-    @Test
+
     public void hashCodeTest()
     {
         int square_array_hash = sar.hashCode();
@@ -122,12 +122,47 @@ public class ArrayTabulatedFunctionTest extends TestCase {
         assertEquals(test_to_obj_methods_hash, test_to_obj_methods_new_hash);
         assertFalse(square_array_hash ==test_to_obj_methods_hash );
     }
-    @Test
+
     public void cloneTest() throws CloneNotSupportedException
     {
-Object copied_sar = sar.clone();
+    Object copied_sar = sar.clone();
     assertEquals(sar, copied_sar);
     Object copied_test_to_obj_methods = test_to_obj_methods.clone();
     assertEquals(test_to_obj_methods, copied_test_to_obj_methods);
+    }
+
+    public void testGetXException() throws IndexOutOfBoundsException {
+        try{
+            ar.getX(100);
+            fail("Expected IndexOutOfBoundsException!");
+        }catch (IndexOutOfBoundsException exception)
+        {
+            assertEquals("Index 100 out of bounds for length 5", exception.getMessage());
+        }
+    }
+    public void testConstuctorException() throws IllegalArgumentException{
+        try{
+            ArrayTabulatedFunction test = new ArrayTabulatedFunction(new double[]{1},new double[]{0});
+            fail("Expected IllegalArgumentException!");
+        }catch (IllegalArgumentException exception)
+        {
+            assertEquals("Size of array less than 2!", exception.getMessage());
+        }
+    }
+    public void testFloorIndexOfXException() throws IllegalArgumentException{
+        try{
+            ar.floorIndexOfX(-1);
+            fail("Expected IllegalArgumentException!");
+        }catch(IllegalArgumentException exception){
+            assertEquals("Arg less than left bound of the array!", exception.getMessage());
+        }
+    }
+    public void testRemoveException() throws IllegalArgumentException{
+        try{
+            ar.remove(ar.getCount()+1);
+            fail("Expected IllegalArgumentException!");
+        }catch(IllegalArgumentException exception){
+            assertEquals("Element with index = 6 doesn't exist",exception.getMessage());
+        }
     }
 }

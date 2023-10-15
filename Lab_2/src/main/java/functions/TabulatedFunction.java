@@ -2,11 +2,11 @@ package functions;
 
 public interface TabulatedFunction extends MathFunction{
     int getCount();
-    double getX(int index);
-    double getY(int index);
-    void setY(int index, double value);
-    int indexOfX(double x);
-    int indexOfY(double y);
-    double leftBound();
+    double getX(int index) throws IllegalArgumentException;
+    double getY(int index) throws IllegalArgumentException;
+    void setY(int index, double value) throws IllegalArgumentException;
+    int indexOfX(double x) throws IllegalArgumentException;
+    int indexOfY(double y) throws IllegalArgumentException;
+    double leftBound() ;
     double rightBound();
 }
