@@ -11,7 +11,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     class Node implements Cloneable {
         public Node next, prev;
         private static Node clonedHead = null;
-        public double y, x;
+        public double y = 0, x = 0;
 
         Node(double x, double y) {
             this.x = x;
@@ -25,25 +25,10 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
         @Override
         public boolean equals(Object o) {
-            /*boolean b= false;
-            if (this == o)
-                return true;
-            if (o instanceof TabulatedFunction) {
-                int tmp_count = ((TabulatedFunction) o).getCount();
-                if (tmp_count == 1)
-                    return (x == ((TabulatedFunction) o).getX(0)) && (y == ((TabulatedFunction) o).getY(0));
-                else return false;
-            } else if (o instanceof LinkedListTabulatedFunction.Node) {
-                if ((this != null) && (o != null)) {
-                    if ((o.getClass() == this.getClass()) && (x == ((LinkedListTabulatedFunction.Node) o).x) && (y == ((LinkedListTabulatedFunction.Node) o).y))
-                        return true;
-                }
-            }
-            return 1;*/
+
             if (this == o)
                 return true;
             return ((o != null) && (o.getClass() == this.getClass()) && (x == ((LinkedListTabulatedFunction.Node) o).x) && (y == ((LinkedListTabulatedFunction.Node) o).y));
-           // return (o instanceof TabulatedFunction)?((((TabulatedFunction) o).getCount() == 1) && (x == ((TabulatedFunction) o).getX(0)) && (y == ((TabulatedFunction) o).getY(0))):(o instanceof LinkedListTabulatedFunction.Node)?((o.getClass() == this.getClass()) && (x == ((LinkedListTabulatedFunction.Node) o).x) && (y == ((LinkedListTabulatedFunction.Node) o).y)):false;
         }
 
         @Override
@@ -54,17 +39,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         @Override
         public Node clone() throws CloneNotSupportedException {
             Node newNode = (Node) super.clone();
-            if (this == head)
-                clonedHead = newNode;
-            if (next != head) {
-                newNode.next = next.clone();
-                newNode.next.prev = newNode;
-
-            } else {
-                newNode.next = clonedHead;
-                clonedHead.prev = newNode;
-            }
-
+            newNode.next = null;
+            newNode.prev = null;
 
             return newNode;
         }
@@ -113,27 +89,29 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         count += 1;
     }
 
-    protected Node getNode(int index) {
+    protected Node getNode(int index) throws IndexOutOfBoundsException{
         Node tmp = head;
         int counter;
-        if (index <= count / 2) {
-            counter = 0;
-            while (counter < count) {
-                if (counter == index)
-                    break;
-                tmp = tmp.next;
-                counter++;
+        if(count > index) {
+            if (index <= count / 2) {
+                counter = 0;
+                while (counter < count) {
+                    if (counter == index)
+                        break;
+                    tmp = tmp.next;
+                    counter++;
+                }
+            } else {
+                counter = count;
+                while (counter > 0) {
+                    if (counter == index)
+                        break;
+                    tmp = tmp.prev;
+                    counter--;
+                }
             }
-        } else {
-            counter = count;
-            while (counter > 0) {
-                if (counter == index)
-                    break;
-                tmp = tmp.prev;
-                counter--;
-            }
-        }
-        return tmp;
+            return tmp;
+        }else throw new IndexOutOfBoundsException("Couldn't get node by index!");
     }
 
     protected int floorIndexOfX(double x) {
@@ -161,12 +139,17 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return count;
     }
 
-    public double getX(int index) {
-        return getNode(index).x;
+    public double getX(int index) throws IndexOutOfBoundsException{
+        if (index < count )
+            return getNode(index).x;
+        else throw new IndexOutOfBoundsException("Couldn't get X by index!");
     }
 
     public double getY(int index) {
-        return getNode(index).y;
+        if (index < count)
+            return getNode(index).y;
+        else
+            throw new IndexOutOfBoundsException("Couldn't get Y by index!");
     }
 
     public void setY(int index, double value) {
@@ -318,6 +301,22 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     public LinkedListTabulatedFunction clone() throws CloneNotSupportedException {
         LinkedListTabulatedFunction list = (LinkedListTabulatedFunction) super.clone();
         list.head = head.clone();
+
+        Node clonedNode = list.head;
+        Node originalNode = head.next;
+        Node tmpClone;
+
+        do{
+
+            tmpClone = originalNode.clone();
+            clonedNode.next = tmpClone;
+            clonedNode.next.prev = clonedNode;
+            clonedNode = tmpClone;
+            originalNode = originalNode.next;
+        }while(originalNode !=  head);
+        list.head.prev = clonedNode;
+        clonedNode.next = list.head;
+
         return list;
 
     }
