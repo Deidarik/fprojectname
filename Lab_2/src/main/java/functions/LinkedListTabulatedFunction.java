@@ -1,7 +1,7 @@
 package functions;
 
 
-import java.lang.reflect.Array;
+
 import java.util.Objects;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable, Cloneable {
@@ -10,8 +10,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     class Node implements Cloneable {
         public Node next, prev;
-        private static Node clonedHead = null;
-        public double y = 0, x = 0;
+
+        public double y , x ;
 
         Node(double x, double y) {
             this.x = x;
@@ -242,7 +242,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                 tmp = tmp.next;
             }
             Node tmp1 = new Node(x, y);
-            Node tmp2 = tmp1;
+            Node tmp2 ;
             tmp2 = tmp.prev.next;
             tmp.prev.next = tmp1;
             tmp1.next = tmp2;

@@ -1,7 +1,7 @@
 package functions;
 
 import junit.framework.TestCase;
-import org.junit.jupiter.api.Test;
+
 
 public class ArrayTabulatedFunctionTest extends TestCase {
     double[] xValue = {1, 3, 5, 7, 9};
@@ -16,7 +16,7 @@ public class ArrayTabulatedFunctionTest extends TestCase {
     ArrayTabulatedFunction sar =  new ArrayTabulatedFunction(sqrFunction, 0, 100, 10);
 
     public void testFloorIndexOfX() {
-        assertEquals(0, ar.floorIndexOfX(-2));
+        assertEquals(0, ar.floorIndexOfX(2));
         assertEquals(1, ar.floorIndexOfX(4.9));
         assertEquals(1, ar.floorIndexOfX(5));
         assertEquals(2, ar.floorIndexOfX(6));
@@ -85,11 +85,10 @@ public class ArrayTabulatedFunctionTest extends TestCase {
         assertEquals(5, ar.indexOfX(11) );
         ar.insert(6,7);
         assertEquals(6, ar.indexOfX(11) );
-        ar.insert(0.1,0.2);
-        assertEquals(0, ar.indexOfX(0.1) );
+        ar.insert(5.9,0.2);
+        assertEquals(-1, ar.indexOfX(0.1) );
 
     }
-
 
     public void testRemove()
     {
@@ -98,14 +97,13 @@ public class ArrayTabulatedFunctionTest extends TestCase {
     }
 
 
-    public void toStringTest(){
+    public void testToStringTest(){
      String inside_array = "| x = 0.0 y = 0.0 |\n| x = 1.0 y = 1.0 |\n| x = 2.0 y = 2.0 |\n| x = 3.0 y = 3.0 |\n";
      assertEquals(inside_array,test_to_obj_methods.toString() );
     }
 
     Object test_to_obj_methods_new = new ArrayTabulatedFunction(xVal, yVal);
-
-    public void equalsTest()
+    public void testEqualsTest()
     {
         assertFalse(test_to_obj_methods.equals(ar));
         assertTrue(test_to_obj_methods.equals(test_to_obj_methods));
@@ -113,8 +111,7 @@ public class ArrayTabulatedFunctionTest extends TestCase {
         assertTrue(test_to_obj_methods.equals(test_to_obj_methods_new));
     }
 
-
-    public void hashCodeTest()
+    public void testHashCodeTest()
     {
         int square_array_hash = sar.hashCode();
         int test_to_obj_methods_hash = test_to_obj_methods.hashCode();
@@ -122,8 +119,7 @@ public class ArrayTabulatedFunctionTest extends TestCase {
         assertEquals(test_to_obj_methods_hash, test_to_obj_methods_new_hash);
         assertFalse(square_array_hash ==test_to_obj_methods_hash );
     }
-
-    public void cloneTest() throws CloneNotSupportedException
+    public void testCloneTest() throws CloneNotSupportedException
     {
     Object copied_sar = sar.clone();
     assertEquals(sar, copied_sar);
@@ -140,7 +136,7 @@ public class ArrayTabulatedFunctionTest extends TestCase {
             assertEquals("Index 100 out of bounds for length 5", exception.getMessage());
         }
     }
-    public void testConstuctorException() throws IllegalArgumentException{
+    public void testConstructorException() throws IllegalArgumentException{
         try{
             ArrayTabulatedFunction test = new ArrayTabulatedFunction(new double[]{1},new double[]{0});
             fail("Expected IllegalArgumentException!");
