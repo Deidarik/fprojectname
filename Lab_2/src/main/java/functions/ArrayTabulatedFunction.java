@@ -1,5 +1,7 @@
 package functions;
+import java.awt.*;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Random;
 import java.lang.*;
 import java.lang.Object;
@@ -241,5 +243,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     {
         return super.clone();
     }
-
+    @Override
+    public Iterator<Point> iterator() throws UnsupportedOperationException{
+        throw new UnsupportedOperationException();
     }
+}

@@ -2,6 +2,8 @@ package functions;
 
 
 
+import java.awt.*;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable, Cloneable {
@@ -325,5 +327,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return list;
 
     }
-
+    @Override
+    public Iterator<Point> iterator() throws UnsupportedOperationException{
+        throw new UnsupportedOperationException();
+    }
 }

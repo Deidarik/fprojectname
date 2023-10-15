@@ -1,6 +1,9 @@
 package functions;
 
-public interface TabulatedFunction extends MathFunction{
+import java.awt.*;
+import java.util.Iterator;
+
+public interface TabulatedFunction extends MathFunction,Iterable<Point> {
     int getCount();
     double getX(int index) throws IllegalArgumentException;
     double getY(int index) throws IllegalArgumentException;
@@ -9,4 +12,5 @@ public interface TabulatedFunction extends MathFunction{
     int indexOfY(double y) throws IllegalArgumentException;
     double leftBound() ;
     double rightBound();
+
 }
