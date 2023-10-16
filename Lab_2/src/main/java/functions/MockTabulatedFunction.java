@@ -1,5 +1,8 @@
 package functions;
 
+import java.awt.*;
+import java.util.Iterator;
+
 public class MockTabulatedFunction extends AbstractTabulatedFunction {
     private double[] xValue;
     private double[] yValue;
@@ -71,5 +74,10 @@ public class MockTabulatedFunction extends AbstractTabulatedFunction {
 
     public double rightBound() {
         return 1;
+    }
+    @Override
+    public Iterator<Point> iterator()
+    {
+        return null;
     }
 }

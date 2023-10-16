@@ -2,6 +2,10 @@ package functions;
 
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTabulatedFunctionTest  {
@@ -222,6 +226,24 @@ class LinkedListTabulatedFunctionTest  {
         }catch (IllegalArgumentException exception)
         {
             assertNotEquals("",exception.getMessage());
+        }
+    }
+    @Test
+    void testIterator() throws NoSuchElementException{
+        Iterator<Point> iterator = testListFunc.iterator();
+        LinkedListTabulatedFunction.Node node = testListFunc.getNode(0);
+        while(iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals((int)node.x, point.x);
+            assertEquals((int)node.y,point.y);
+            node = node.next;
+        }
+        node = testListFunc.getNode(0);
+        for(Point point: testListFunc)
+        {
+            assertEquals((int)node.x, point.x);
+            assertEquals((int)node.y,point.y);
+            node = node.next;
         }
     }
 }

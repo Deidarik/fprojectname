@@ -3,7 +3,9 @@ package functions;
 
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable, Cloneable {
@@ -327,8 +329,27 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return list;
 
     }
+
     @Override
     public Iterator<Point> iterator() throws UnsupportedOperationException{
-        throw new UnsupportedOperationException();
+        return new Iterator<Point>() {
+            private Node curNode = head;
+            @Override
+            public boolean hasNext()  {
+                return (curNode.next != head) && (curNode.next != null);
+            }
+
+            @Override
+            public Point next()throws NoSuchElementException {
+
+                if(hasNext()){
+                    Point point = new Point((int)curNode.x,(int)curNode.y);
+                    curNode = curNode.next;
+                    return point;
+                }else throw new NoSuchElementException();
+
+            }
+        };
+
     }
 }
