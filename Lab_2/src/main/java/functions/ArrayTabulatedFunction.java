@@ -10,7 +10,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     private double[] xValues = null;
     private double[] yValues = null;
 
-    ArrayTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException{
+    public ArrayTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException{
         int size = xValues.length;
         if (size < 2)
             throw new IllegalArgumentException("Size of array less than 2!");
