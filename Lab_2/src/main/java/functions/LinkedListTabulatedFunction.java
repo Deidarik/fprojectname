@@ -311,14 +311,14 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         Node originalNode = head.next;
         Node tmpClone;
 
-        do{
+        while(originalNode !=  head){
 
             tmpClone = originalNode.clone();
             clonedNode.next = tmpClone;
             clonedNode.next.prev = clonedNode;
             clonedNode = tmpClone;
             originalNode = originalNode.next;
-        }while(originalNode !=  head);
+        }
         list.head.prev = clonedNode;
         clonedNode.next = list.head;
 
