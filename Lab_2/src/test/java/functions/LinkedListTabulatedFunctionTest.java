@@ -238,6 +238,13 @@ class LinkedListTabulatedFunctionTest  {
             assertEquals((int)node.y,point.y);
             node = node.next;
         }
+        try{
+            Point point = iterator.next();
+            fail("Expected NoSuchElementException!");
+        }catch (NoSuchElementException exception) {
+            assertNotEquals("",exception.getMessage());
+        }
+
         node = testListFunc.getNode(0);
         for(Point point: testListFunc)
         {
