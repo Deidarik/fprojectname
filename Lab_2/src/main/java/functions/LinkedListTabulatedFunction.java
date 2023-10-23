@@ -340,7 +340,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             }
 
             @Override
-            public Point next()throws NoSuchElementException {
+            public Point next(){
 
                 if(hasNext()){
                     Point point = new Point((int)curNode.x,(int)curNode.y);
