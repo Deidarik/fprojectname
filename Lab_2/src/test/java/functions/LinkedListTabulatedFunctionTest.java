@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.awt.*;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import exceptions.ArrayIsNotSortedException;
+import exceptions.DifferentLengthOfArraysException;
+import exceptions.InterpolationException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,8 +49,8 @@ class LinkedListTabulatedFunctionTest  {
     void interpolate() {
         assertEquals(22.5, testListArray .interpolate(2.25, testListArray .floorIndexOfX(3)));
         assertEquals(12, testListArray .interpolate(1.2, testListFunc.floorIndexOfX(1.3)));
-        assertEquals(-21.141666666666673, testListFunc.interpolate(2.2, testListArray .floorIndexOfX(9)));
-        assertEquals(29.57499999999999, testListFunc.interpolate(5.6, testListFunc.floorIndexOfX(8.7)));
+        //assertEquals(-21.141666666666673, testListFunc.interpolate(2.2, testListArray .floorIndexOfX(9)));
+        assertEquals(32.50277777777777, testListFunc.interpolate(5.6, testListFunc.floorIndexOfX(3.59)));
     }
 
     @Test
@@ -207,6 +210,25 @@ class LinkedListTabulatedFunctionTest  {
         }catch (IllegalArgumentException exception){
             assertNotEquals("", exception.getMessage());
         }
+        try{
+            LinkedListTabulatedFunction test = new LinkedListTabulatedFunction(new double[]{0,1},new double[]{1,0,0});
+            fail("Expected DifferentLengthOfArraysException!");
+        }
+        catch(DifferentLengthOfArraysException exception){
+            assertEquals("arrays of different length", exception.getMessage());
+        }
+        try{
+            LinkedListTabulatedFunction test = new LinkedListTabulatedFunction(new double[]{2,1},new double[]{1,0});
+            fail("Expected ArrayIsNotSortedException!");
+        }
+        catch(ArrayIsNotSortedException exception){
+            assertEquals("array values aren't sorted in ascending order", exception.getMessage());
+        }
+    }
+    @Test
+
+    public void testInterpolationException() throws InterpolationException{
+        assertThrows(InterpolationException.class, ()->{testListArray.interpolate(13.2,3);});
     }
     @Test
     void testFloorNodeNIndexOfX() throws IllegalArgumentException {

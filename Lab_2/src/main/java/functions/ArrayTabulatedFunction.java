@@ -1,4 +1,8 @@
 package functions;
+import exceptions.ArrayIsNotSortedException;
+import exceptions.DifferentLengthOfArraysException;
+import exceptions.InterpolationException;
+
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -10,10 +14,12 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     private double[] xValues = null;
     private double[] yValues = null;
 
-    public ArrayTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException{
+    public ArrayTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException, DifferentLengthOfArraysException, ArrayIsNotSortedException {
         int size = xValues.length;
         if (size < 2)
             throw new IllegalArgumentException("Size of array less than 2!");
+        checkLengthIsTheSame(xValues, yValues);
+        checkSorted(xValues);
         this.xValues = Arrays.copyOf(xValues, size);
         this.yValues = Arrays.copyOf(yValues, size);
         count = xValues.length;
@@ -49,15 +55,18 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         return (index == count || index == 0) ? index : --index;
     }
     protected double extrapolateLeft(double x) {
-        return interpolate(x, 0);
+        //return interpolate(x, 0);
+        return interpolate(x, getX(0), getX(1), getY(0), getY(1));
     }
 
     protected double extrapolateRight(double x) {
-        return interpolate(x, count - 2);
+        //return interpolate(x, count - 2);
+        return interpolate(x, getX(count-2), getX(count-1), getY(count-2), getY(count-1));
     }
 
-    protected double interpolate(double x, int floorIndex) {
-        return interpolate(x, getX(floorIndex), getX(floorIndex + 1), getY(floorIndex), getY(floorIndex + 1));
+    protected double interpolate(double x, int floorIndex) throws InterpolationException {
+        if(x>this.getX(floorIndex+1)||x<this.getX(floorIndex)){ throw new InterpolationException("index in uninterpolated period");}
+            return interpolate(x, getX(floorIndex), getX(floorIndex + 1), getY(floorIndex), getY(floorIndex + 1));
     }
 
     public int getCount() {
@@ -241,7 +250,13 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     @Override
     public Object clone() throws CloneNotSupportedException
     {
-        return super.clone();
+        ArrayTabulatedFunction array = (ArrayTabulatedFunction)  super.clone();
+array.xValues = new double[xValues.length];
+array.yValues = new double[yValues.length];
+for(int i=0;i<xValues.length;++i) { array.xValues[i] = xValues[i];}
+        for(int i=0;i<yValues.length;++i) { array.yValues[i] = yValues[i];}
+        return array;
+
     }
     @Override
     public Iterator<Point> iterator() throws UnsupportedOperationException{
