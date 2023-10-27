@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import exceptions.ArrayIsNotSortedException;
 import exceptions.DifferentLengthOfArraysException;
 import exceptions.InterpolationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 public class ArrayTabulatedFunctionTest {
@@ -190,4 +192,24 @@ assertEquals("array values aren't sorted in ascending order", exception.getMessa
             assertEquals("Element with index = 6 doesn't exist",exception.getMessage());
         }
     }
+
+    @Test
+    void arrayTabulatedIteratorTestException() {
+        Iterator<Point> iterator = ar.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(xValue[i], point.x);
+            assertEquals(yValue[i], point.y);
+            ++i;
+        }
+        i = 0;
+        for (Point point : ar) {
+            assertEquals(xValue[i], point.x);
+            assertEquals(yValue[i], point.y);
+            ++i;
+        }
+
+    }
+
 }

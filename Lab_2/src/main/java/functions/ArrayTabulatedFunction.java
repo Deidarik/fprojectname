@@ -2,12 +2,10 @@ package functions;
 import exceptions.ArrayIsNotSortedException;
 import exceptions.DifferentLengthOfArraysException;
 import exceptions.InterpolationException;
-
-import java.awt.*;
+import java.util.NoSuchElementException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
-import java.lang.*;
 import java.lang.Object;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable, Cloneable{
@@ -258,8 +256,25 @@ for(int i=0;i<xValues.length;++i) { array.xValues[i] = xValues[i];}
         return array;
 
     }
+
     @Override
-    public Iterator<Point> iterator() throws UnsupportedOperationException{
-        throw new UnsupportedOperationException();
+    public Iterator<Point> iterator() {
+        return new Iterator<Point>() {
+            private int i = 0;
+
+            @Override
+            public boolean hasNext() {
+                return (i < count);
+            }
+
+            @Override
+            public Point next() {
+                if (hasNext()) {
+                    Point point = new Point(xValues[i], yValues[i]);
+                    ++i;
+                    return point;
+                } else throw new NoSuchElementException();
+            }
+        };
     }
 }

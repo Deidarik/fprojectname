@@ -1,4 +1,4 @@
-package functions.factory;
+package functions;
 
 public class Point {
     public final double x;
