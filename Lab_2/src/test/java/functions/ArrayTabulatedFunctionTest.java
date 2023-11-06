@@ -193,27 +193,10 @@ assertEquals("array values aren't sorted in ascending order", exception.getMessa
     }
 
     @Test
-   /* void arrayTabulatedIteratorTestException() {
-        Iterator<Point> iterator = ar.iterator();
-        int i = 0;
-        while (iterator.hasNext()) {
-            Point point = iterator.next();
-            assertEquals(xValue[i], point.x);
-            assertEquals(yValue[i], point.y);
-            ++i;
-        }
-        i = 0;
-        for (Point point : ar) {
-            assertEquals(xValue[i], point.x);
-            assertEquals(yValue[i], point.y);
-            ++i;
-        }
 
-    }*/
-
-    public void testIteratorWithWhileLoop() {
-        double[] xValues = {1.0, 2.0, 3.0};
-        double[] yValues = {10.0, 20.0, 30.0};
+    public void testIteratorWithLoops() {
+        double[] xValues = {1.0, 2.0, 3.0, 4.0, 5.0};
+        double[] yValues = {10.0, 20.0, 30.0, 40.0, 50.0};
         ArrayTabulatedFunction tabulatedFunction = new ArrayTabulatedFunction(xValues, yValues);
 
         Iterator<Point> iterator = tabulatedFunction.iterator();

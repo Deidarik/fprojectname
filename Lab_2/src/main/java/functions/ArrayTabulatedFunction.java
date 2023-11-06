@@ -257,33 +257,6 @@ for(int i=0;i<xValues.length;++i) { array.xValues[i] = xValues[i];}
         return array;
 
     }
-
-    /* @Override
-
-    public Iterator<Point> iterator() {
-        return new Iterator<Point>() {
-            private int i = 0;
-
-            @Override
-
-            public boolean hasNext() {
-                return (i < count);
-            }
-
-            @Override
-
-            public Point next() {
-                if (hasNext()) {
-                    Point point = new Point(xValues[i], yValues[i]);
-                    ++i;
-                    return point;
-                } else throw new NoSuchElementException();
-            }
-        };
-    }*/
-
-
-
     public Iterator iterator() {
 
         Iterator iterator = new Iterator() {
