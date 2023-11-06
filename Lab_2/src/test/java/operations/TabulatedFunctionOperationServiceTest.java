@@ -17,8 +17,8 @@ class TabulatedFunctionOperationServiceTest{
 
     @Test
     void asPoint() {
-        double[] xValues = {1.0, 2.0, 3.0};
-        double[] yValues = {10.0, 20.0, 30.0};
+        double[] xValues = {1.0, 2.0, 3.0, 4.0,5.0};
+        double[] yValues = {10.0, 20.0, 30.0, 40.0,50.0};
         TabulatedFunction tabulatedFunction = new ArrayTabulatedFunction(xValues, yValues);
 
         Point[] points = TabulatedFunctionOperationService.asPoints(tabulatedFunction);

@@ -346,9 +346,11 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     public Iterator<Point> iterator() throws UnsupportedOperationException{
         return new Iterator<Point>() {
             private Node curNode = head;
+            private int tmpCount = 0;
             @Override
             public boolean hasNext()  {
-                return (curNode.next != head) && (curNode.next != null);
+                /*return (curNode.next != head) && (curNode.next != null);*/
+                return tmpCount < getCount();
             }
 
             @Override
@@ -357,6 +359,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                 if(hasNext()){
                     Point point = new Point((int)curNode.x,(int)curNode.y);
                     curNode = curNode.next;
+                    tmpCount++;
                     return point;
                 }else throw new NoSuchElementException();
 
