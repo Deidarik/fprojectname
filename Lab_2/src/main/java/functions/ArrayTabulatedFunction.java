@@ -4,11 +4,11 @@ import exceptions.DifferentLengthOfArraysException;
 import exceptions.InterpolationException;
 import java.util.NoSuchElementException;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Random;
-import java.lang.Object;
+import java.util.Iterator;
+import java.lang.*;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable, Cloneable{
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable,  Cloneable{
     private double[] xValues = null;
     private double[] yValues = null;
 
@@ -246,6 +246,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     }
 
     @Override
+
     public Object clone() throws CloneNotSupportedException
     {
         ArrayTabulatedFunction array = (ArrayTabulatedFunction)  super.clone();
@@ -257,17 +258,20 @@ for(int i=0;i<xValues.length;++i) { array.xValues[i] = xValues[i];}
 
     }
 
-    @Override
+    /* @Override
+
     public Iterator<Point> iterator() {
         return new Iterator<Point>() {
             private int i = 0;
 
             @Override
+
             public boolean hasNext() {
                 return (i < count);
             }
 
             @Override
+
             public Point next() {
                 if (hasNext()) {
                     Point point = new Point(xValues[i], yValues[i]);
@@ -276,5 +280,37 @@ for(int i=0;i<xValues.length;++i) { array.xValues[i] = xValues[i];}
                 } else throw new NoSuchElementException();
             }
         };
+    }*/
+
+
+
+    public Iterator iterator() {
+
+        Iterator iterator = new Iterator() {
+
+            int i;
+
+            @Override
+            public boolean hasNext() {
+                return i < count;
+            }
+
+            @Override
+            public Point next() {
+
+                if (!hasNext()) throw new NoSuchElementException();
+
+                Point newPoint = new Point(getX(i), getY(i));
+                ++i;
+                return newPoint;
+
+            }
+
+        };
+
+        return iterator;
+
     }
+
+
 }

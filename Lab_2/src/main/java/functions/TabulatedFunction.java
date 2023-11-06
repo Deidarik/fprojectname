@@ -1,6 +1,5 @@
 package functions;
 
-import java.awt.*;
 import java.util.Iterator;
 
 public interface TabulatedFunction extends MathFunction,Iterable<Point> {
