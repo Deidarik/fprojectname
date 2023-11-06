@@ -256,8 +256,8 @@ class LinkedListTabulatedFunctionTest  {
         LinkedListTabulatedFunction.Node node = testListFunc.getNode(0);
         while(iterator.hasNext()) {
             Point point = iterator.next();
-            assertEquals((int)node.x, point.x);
-            assertEquals((int)node.y,point.y);
+            assertEquals(node.x, point.x);
+            assertEquals(node.y,point.y);
             node = node.next;
         }
         try{
@@ -270,8 +270,8 @@ class LinkedListTabulatedFunctionTest  {
         node = testListFunc.getNode(0);
         for(Point point: testListFunc)
         {
-            assertEquals((int)node.x, point.x);
-            assertEquals((int)node.y,point.y);
+            assertEquals(node.x, point.x);
+            assertEquals(node.y,point.y);
             node = node.next;
         }
     }

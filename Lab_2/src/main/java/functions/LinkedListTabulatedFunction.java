@@ -357,7 +357,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             public Point next(){
 
                 if(hasNext()){
-                    Point point = new Point((int)curNode.x,(int)curNode.y);
+                    Point point = new Point(curNode.x,curNode.y);
                     curNode = curNode.next;
                     tmpCount++;
                     return point;

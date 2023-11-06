@@ -2,6 +2,7 @@ package operations;
 
 import functions.MathFunction;
 
-public interface DifferentialOperator<T extends MathFunction>{
-    T derive(T function);
+public interface DifferentialOperator<T> extends MathFunction {
+    T derive( T function);
+
 }
