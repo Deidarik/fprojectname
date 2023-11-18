@@ -5,13 +5,14 @@ import functions.TabulatedFunction;
 
 import java.io.BufferedOutputStream;
 import java.io.PrintWriter;
+import java.io.*;
 
 public final class FunctionsIO {
     private FunctionsIO() {
         throw new UnsupportedOperationException();
     }
 
-    static void writeTabulatedFunction(BufferedOutputStream outputStream, TabulatedFunction function){
+    public static void writeTabulatedFunction(BufferedWriter outputStream, TabulatedFunction function){
         PrintWriter printWriter = new PrintWriter(outputStream);
         printWriter.println(function.getCount());
         for (Point point : function) {
