@@ -198,16 +198,16 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         }
     }
 
-    @Override
-
-    public String toString(){
-        String inside_array = "";
-
-        for( int i =0; i<count;++i) inside_array+= '|' + " x = " + String.valueOf(getX(i)) + " y = " + String.valueOf(getY(i)) + " |\n";
-
-
-        return inside_array;
-    }
+//    @Override
+//
+//    public String toString(){
+//        String inside_array = "";
+//
+//        for( int i =0; i<count;++i) inside_array+= '|' + " x = " + String.valueOf(getX(i)) + " y = " + String.valueOf(getY(i)) + " |\n";
+//
+//
+//        return inside_array;
+//    }
 
    @Override
 

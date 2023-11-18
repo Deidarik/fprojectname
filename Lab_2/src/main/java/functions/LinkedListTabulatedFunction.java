@@ -273,17 +273,17 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         count += 1;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder line = new StringBuilder();
-        Node tmp = head;
-        do {
-            line.append(tmp.toString());
-            tmp = tmp.next;
-
-        } while (tmp != head);
-        return line.toString();
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder line = new StringBuilder();
+//        Node tmp = head;
+//        do {
+//            line.append(tmp.toString());
+//            tmp = tmp.next;
+//
+//        } while (tmp != head);
+//        return line.toString();
+//    }
 
     @Override
     public boolean equals(Object o) {
