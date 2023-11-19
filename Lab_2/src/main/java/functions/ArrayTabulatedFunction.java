@@ -12,6 +12,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     private double[] xValues = null;
     private double[] yValues = null;
 
+    static final long serialVersionUID = 20L;
+
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException, DifferentLengthOfArraysException, ArrayIsNotSortedException {
         int size = xValues.length;
         if (size < 2)
