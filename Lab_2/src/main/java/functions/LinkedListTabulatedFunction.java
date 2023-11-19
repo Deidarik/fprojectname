@@ -8,11 +8,16 @@ import exceptions.InterpolationException;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable, Cloneable {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable, Cloneable, Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -7363759284047806800L;
     protected int count;
     private Node head = null;
 

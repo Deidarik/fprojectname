@@ -11,6 +11,8 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
+import static jdk.internal.jimage.decompressor.CompressIndexes.*;
+
 public final class FunctionsIO {
     private FunctionsIO() {
         throw new UnsupportedOperationException();
@@ -24,6 +26,16 @@ public final class FunctionsIO {
         }
         printWriter.flush();
     }
+    public static void writeTabulatedFunction(BufferedOutputStream outputStream,TabulatedFunction function) throws IOException {
+        DataOutputStream dataOutput = new DataOutputStream(outputStream);
+        dataOutput.writeInt(function.getCount());
+        for(Point point: function){
+            dataOutput.writeDouble(point.x);
+            dataOutput.writeDouble(point.y);
+        }
+        dataOutput.flush();
+    }
+
 
     static TabulatedFunction readTabulatedFunction(BufferedReader reader, TabulatedFunctionFactory factory) throws IOException {
         int length = Integer.parseInt(reader.readLine());
@@ -49,6 +61,17 @@ public final class FunctionsIO {
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(stream);
         objectOutputStream.writeObject(function);
         objectOutputStream.flush();
+    }
+    public static TabulatedFunction readTabulatedFunction(BufferedInputStream inputStream, TabulatedFunctionFactory factory) throws IOException {
+        DataInputStream dataInputStream = new DataInputStream(inputStream);
+        int size = dataInputStream.readInt();
+        double[] xValues = new double[size];
+        double[] yValues = new double[size];
+        for(int i = 0; i<size; ++i){
+            xValues[i] = dataInputStream.readDouble();
+            yValues[i] = dataInputStream.readDouble();
+        }
+        return factory.create(xValues, yValues);
     }
 
 }
