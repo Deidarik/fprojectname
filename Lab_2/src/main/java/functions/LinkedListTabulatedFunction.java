@@ -21,7 +21,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     protected int count;
     private Node head = null;
 
-    class Node implements Cloneable {
+    class Node implements Cloneable,Serializable {
         public Node next, prev;
 
         public double y , x ;
