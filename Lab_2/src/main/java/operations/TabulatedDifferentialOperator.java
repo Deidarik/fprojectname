@@ -2,6 +2,7 @@ package operations;
 
 import functions.Point;
 import functions.TabulatedFunction;
+import functions.factory.ArrayTabulatedFunctionFactory;
 import functions.factory.TabulatedFunctionFactory;
 
 public class TabulatedDifferentialOperator implements DifferentialOperator<TabulatedFunction>{
@@ -11,6 +12,11 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
     }
     public TabulatedFunctionFactory getFactory(){
         return factory;
+    }
+
+    public TabulatedDifferentialOperator() {
+
+        this.factory = new ArrayTabulatedFunctionFactory();
     }
     public void setFactory(TabulatedFunctionFactory fact){
         factory = fact;

@@ -2,17 +2,20 @@ package functions;
 import exceptions.ArrayIsNotSortedException;
 import exceptions.DifferentLengthOfArraysException;
 import exceptions.InterpolationException;
+
+import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Iterator;
 import java.lang.*;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable,  Cloneable{
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable,  Cloneable, Serializable{
     private double[] xValues = null;
     private double[] yValues = null;
+    private static final long serialVersionUID = 1483522376531849211L;
+    protected int count;
 
-    static final long serialVersionUID = 20L;
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException, DifferentLengthOfArraysException, ArrayIsNotSortedException {
         int size = xValues.length;
