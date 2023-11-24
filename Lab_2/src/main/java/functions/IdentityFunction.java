@@ -5,7 +5,7 @@ import java.lang.*;
 public class IdentityFunction implements MathFunction, Cloneable{
     public double apply(double x)
     {
-        return x*2 - x;
+        return x;
     }
     @Override
    public String toString()

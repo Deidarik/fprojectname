@@ -81,12 +81,12 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
         if (count < 2)
             throw new IllegalArgumentException("Size of list less than 2");
-        this.count = count;
+        this.count = 0;
 
         double step = (xFrom + xTo) / (count - 1);
         double xCordinate = xFrom;
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; ++i) {
             addNode(xCordinate, source.apply(xCordinate));
             xCordinate += step;
         }
