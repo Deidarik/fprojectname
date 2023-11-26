@@ -1,8 +1,11 @@
 package concurrent;
 
+import functions.ArrayTabulatedFunction;
 import functions.LinkedListTabulatedFunction;
 import functions.Point;
 import functions.TabulatedFunction;
+import functions.factory.LinkedListTabulatedFunctionFactory;
+import operations.TabulatedDifferentialOperator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
@@ -81,6 +84,30 @@ class SynchronizedTabulatedFunctionTest {
         };
         double sumOfY = syncFunctionTest.doSynchronously(operation);
         assertEquals(30.0, sumOfY);
+    }
+
+    @Test
+    void deriveTest() {
+        LinkedListTabulatedFunctionFactory fact = new LinkedListTabulatedFunctionFactory();
+        TabulatedDifferentialOperator operation = new TabulatedDifferentialOperator(fact);
+        ArrayTabulatedFunction func = new ArrayTabulatedFunction(xValues, yValues);
+        TabulatedFunction differential_func = operation.derive(func);
+        assertEquals(1, differential_func.getY(0));
+        assertEquals(1, differential_func.getY(1));
+        assertEquals(1, differential_func.getY(2));
+        assertEquals(1, differential_func.getY(3));
+    }
+
+    @Test
+    void deriveSynchronouslyTest() {
+        LinkedListTabulatedFunctionFactory fact = new LinkedListTabulatedFunctionFactory();
+        TabulatedDifferentialOperator operation = new TabulatedDifferentialOperator(fact);
+        ArrayTabulatedFunction func = new ArrayTabulatedFunction(xValues, yValues);
+        TabulatedFunction differential_func = operation.deriveSynchronously(func);
+        assertEquals(1, differential_func.getY(0));
+        assertEquals(1, differential_func.getY(1));
+        assertEquals(1, differential_func.getY(2));
+        assertEquals(1, differential_func.getY(3));
     }
 
 }
