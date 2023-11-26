@@ -56,7 +56,7 @@ class LinkedListTabulatedFunctionTest  {
     @Test
     void getCount() {
         assertEquals(6, testListArray .getCount());
-        assertEquals(26, testListFunc.getCount());
+        assertEquals(13, testListFunc.getCount());
     }
 
     @Test
@@ -68,7 +68,7 @@ class LinkedListTabulatedFunctionTest  {
     @Test
     void getY() throws IllegalAccessException {
         assertEquals(130.0, testListArray .getY(4));
-        assertEquals(1, testListFunc.getY(13));
+        assertEquals(1, testListFunc.getY(0));
     }
 
     @Test

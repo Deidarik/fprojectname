@@ -102,7 +102,7 @@ public class ArrayTabulatedFunctionTest {
 
 @Test
     public void testToStringTest(){
-     String inside_array = "| x = 0.0 y = 0.0 |\n| x = 1.0 y = 1.0 |\n| x = 2.0 y = 2.0 |\n| x = 3.0 y = 3.0 |\n";
+     String inside_array = "ArrayTabulatedFunction size = 4\n[0.0;0.0]\n[1.0;1.0]\n[2.0;2.0]\n[3.0;3.0]\n";
      assertEquals(inside_array,test_to_obj_methods.toString() );
     }
 
