@@ -70,4 +70,17 @@ class SynchronizedTabulatedFunctionTest {
             i++;
         }
     }
+
+    @Test
+    public void doSynchronously() {
+        SynchronizedTabulatedFunction.Operation<Double> operation = func -> {
+            double sum = 0;
+            for (Point ord : syncFunctionTest)
+                sum += ord.y;
+            return sum;
+        };
+        double sumOfY = syncFunctionTest.doSynchronously(operation);
+        assertEquals(30.0, sumOfY);
+    }
+
 }
