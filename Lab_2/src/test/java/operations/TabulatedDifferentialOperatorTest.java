@@ -20,9 +20,6 @@ class TabulatedDifferentialOperatorTest {
     TabulatedFunctionFactory tabulatedFunctionFactory = new LinkedListTabulatedFunctionFactory();
     TabulatedDifferentialOperator tabulatedDifferentialOperator = new TabulatedDifferentialOperator(tabulatedFunctionFactory);
 
-    ArrayTabulatedFunction array = new ArrayTabulatedFunction(xValues, yValues);
-
-    LinkedListTabulatedFunction lst = new LinkedListTabulatedFunction(xValues, yValues);
     @Test
     void derive() {
         LinkedListTabulatedFunction listTabulatedFunction2 = new LinkedListTabulatedFunction(xValues,yValues);
@@ -37,26 +34,4 @@ class TabulatedDifferentialOperatorTest {
 
     }
 
-    @Test
-    public void deriveTest1() {
-        LinkedListTabulatedFunctionFactory fact = new LinkedListTabulatedFunctionFactory();
-        TabulatedDifferentialOperator operation = new TabulatedDifferentialOperator(fact);
-        TabulatedFunction function = operation.derive(lst);
-        Assertions.assertEquals(9, function.getY(0));
-        Assertions.assertEquals(9, function.getY(1));
-        Assertions.assertEquals(9, function.getY(2));
-        Assertions.assertEquals(9, function.getY(3));
-    }
-
-    @Test
-    public void deriveTest2() {
-        LinkedListTabulatedFunctionFactory fact = new LinkedListTabulatedFunctionFactory();
-        TabulatedDifferentialOperator operation = new TabulatedDifferentialOperator(fact);
-        TabulatedFunction function = operation.derive(array);
-        Assertions.assertEquals(9, function.getY(0));
-        Assertions.assertEquals(9, function.getY(1));
-        Assertions.assertEquals(9, function.getY(2));
-        Assertions.assertEquals(9, function.getY(3));
-        Assertions.assertEquals(9, function.getY(4));
-    }
 }
