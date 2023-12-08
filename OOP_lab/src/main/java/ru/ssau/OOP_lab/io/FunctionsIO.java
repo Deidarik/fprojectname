@@ -1,8 +1,8 @@
-package io;
+package ru.ssau.OOP_lab.io;
 
-import functions.Point;
-import functions.TabulatedFunction;
-import functions.factory.TabulatedFunctionFactory;
+import ru.ssau.OOP_lab.functions.Point;
+import ru.ssau.OOP_lab.functions.TabulatedFunction;
+import ru.ssau.OOP_lab.functions.factory.TabulatedFunctionFactory;
 
 import java.io.BufferedOutputStream;
 import java.io.PrintWriter;
@@ -10,7 +10,6 @@ import java.io.*;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
-
 
 public final class FunctionsIO {
     private FunctionsIO() {
