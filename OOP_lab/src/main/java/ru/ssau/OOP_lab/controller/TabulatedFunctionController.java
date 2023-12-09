@@ -28,6 +28,6 @@ public class TabulatedFunctionController {
     public String amountOfPointsSubmit(@ModelAttribute AmountOfPointsComponent amountOfPointsComponent, Model model){
         model.addAttribute("amountOfPointsComponent",amountOfPointsComponent);
         System.out.println(amountOfPointsComponent.getAmount());
-        return "result";
+        return "createTabulatedFunction";
     }
 }

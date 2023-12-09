@@ -7,29 +7,18 @@
     <br>
     <p th:text = "${message}"></p>
     <form action="#" th:action="@{/createTabulatedFunction}" th:object="${amountOfPointsComponent}" method="post">
-        <p>Amount: <input type="number" th:field="*{amount}" required min="0" max="18" /></p>
+        <p>Amount: <input type="number" th:field="*{amount}" required minlength="1" maxlength="18" /></p>
         <p><input type="submit" value="Submit" />
             <input type="reset" value="Reset" /></p>
         <p th:text="${error}">
     </form>
+    <br>
+    <br>
 
-    <table style = "border-color:black;">
-        <thead>
-        <tr>
-            <th>X</th>
-            <th>Y</th>
-        </tr>
-        </thead>
+    <br>
+    <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p>
+    <br>
+    <br>
 
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-
-            </tr>
-        </tbody>
-
-
-    </table>
 </body>
 </html>
