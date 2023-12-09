@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>All Users</title>
+    </head>
+<body>
+    <br>
+    <p th:text = "${message}"></p>
+    <form action="#" th:action="@{/createTabulatedFunction}" th:object="${amountOfPointsComponent}" method="post">
+        <p>Amount: <input type="number" th:field="*{amount}" required min="0" max="18" /></p>
+        <p><input type="submit" value="Submit" />
+            <input type="reset" value="Reset" /></p>
+        <p th:text="${error}">
+    </form>
+
+    <table style = "border-color:black;">
+        <thead>
+        <tr>
+            <th>X</th>
+            <th>Y</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+
+            </tr>
+        </tbody>
+
+
+    </table>
+</body>
+</html>
