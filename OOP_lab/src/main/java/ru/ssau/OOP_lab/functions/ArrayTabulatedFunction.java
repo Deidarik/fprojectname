@@ -3,6 +3,7 @@ import ru.ssau.OOP_lab.exceptions.ArrayIsNotSortedException;
 import ru.ssau.OOP_lab.exceptions.DifferentLengthOfArraysException;
 import ru.ssau.OOP_lab.exceptions.InterpolationException;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import java.lang.*;
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable,  Cloneable, Serializable{
     private double[] xValues = null;
     private double[] yValues = null;
+    @Serial
     private static final long serialVersionUID = 1483522376531849211L;
     protected int count;
 
