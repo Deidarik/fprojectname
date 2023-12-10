@@ -14,8 +14,8 @@
     <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p>
     <br>
     <form action = "#" th:action = "@{/createTabulatedFunction}" th:object="${point}" method= "post">
-        <p>X:<label><input type = "number" th:field = "*{x}" required ></label></p>
-        <p>Y:<label><input type = "number" th:field = "*{y}" required ></label></p>
+        <p>X:<label><input type = "number" step="any" th:field = "*{x}" required ></label></p>
+        <p>Y:<label><input type = "number" step="any" th:field = "*{y}" required ></label></p>
         <p><input name="add" type="submit" value="Add" /></p>
     </form>
     <p th:text="${message}"></p>
@@ -33,9 +33,10 @@
                 <td th:text = "${pt.y}"></td>
             </tr>
         </tbody>
-
-
-
     </table>
+    <form action="#" th:action="@{/createTabulatedFunction}"  method="post">
+        <p><input name = "create" type="submit" value="Create" /></p>
+    </form>
+    <p th:text="${notification}"></p>
 </body>
 </html>

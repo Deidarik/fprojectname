@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.ssau.OOP_lab.components.AmountOfPointsComponent;
 import ru.ssau.OOP_lab.functions.Point;
+import ru.ssau.OOP_lab.functions.TabulatedFunction;
+import ru.ssau.OOP_lab.functions.factory.LinkedListTabulatedFunctionFactory;
+import ru.ssau.OOP_lab.functions.factory.TabulatedFunctionFactory;
+import ru.ssau.OOP_lab.io.LinkedListTabulatedFunctionSerialization;
+import ru.ssau.OOP_lab.operations.TabulatedFunctionOperationService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +26,13 @@ public class TabulatedFunctionController {
     private List<Point> pointList = new ArrayList<>();
     private AmountOfPointsComponent amountOfPoints = new AmountOfPointsComponent();
 
-    @RequestMapping(params = "submit",method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String amountOfPointsForm(Model model){
         model.addAttribute("amountOfPointsComponent",amountOfPoints );
-        return "createTabulatedFunction";
-    }
-    @RequestMapping(params = "add",method = RequestMethod.GET)
-    public String pointsForm(Model model){
         model.addAttribute("point", new Point());
         return "createTabulatedFunction";
     }
+
     @RequestMapping(params = "submit", method = RequestMethod.POST)
     public String amountOfPointsSubmit(@ModelAttribute AmountOfPointsComponent amountOfPointsComponent,
                                        @ModelAttribute Point point,
@@ -72,8 +74,28 @@ public class TabulatedFunctionController {
                               Model model){
         pointList = new ArrayList<>();
         amountOfPoints.setAmount(0);
+        size = 0;
         model.addAttribute("amountOfPointsComponent", amountOfPoints);
         model.addAttribute("points", pointList);
+        return "createTabulatedFunction";
+    }
+    @RequestMapping(params = "create",method = RequestMethod.POST)
+    public String createTabulatedFunction(@ModelAttribute AmountOfPointsComponent amountOfPointsComponent,
+                                          @ModelAttribute Point point,
+                                          Model model){
+        if(!pointList.isEmpty()) {
+            TabulatedFunctionFactory funcFactory = new LinkedListTabulatedFunctionFactory();
+            double[][] values = TabulatedFunctionOperationService.listOfPointsAsMassive(pointList);
+            TabulatedFunction func = funcFactory.create(values[0],values[1]);
+            LinkedListTabulatedFunctionSerialization.serialize("savedFunctions/linked list/func1.bin",func);
+            System.out.println(LinkedListTabulatedFunctionSerialization.deserialize("savedFunctions/linked list/func1.bin"));
+            model.addAttribute("message", "Tabulated function created");
+            valuesReset(amountOfPointsComponent,point,model);
+        } else if (amountOfPoints.getAmount() != 0){
+            model.addAttribute("amountOfPointsComponent", amountOfPoints);
+            model.addAttribute("points", pointList);
+            model.addAttribute("notification", "Your list is empty");
+        }
         return "createTabulatedFunction";
     }
 

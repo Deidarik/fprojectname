@@ -6,6 +6,8 @@ import ru.ssau.OOP_lab.functions.TabulatedFunction;
 import ru.ssau.OOP_lab.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.OOP_lab.functions.factory.TabulatedFunctionFactory;
 
+import java.util.List;
+
 public class TabulatedFunctionOperationService {
     private TabulatedFunctionFactory factory;
 
@@ -28,6 +30,16 @@ public class TabulatedFunctionOperationService {
         }
 
         return points;
+    }
+    public static double[][] listOfPointsAsMassive(List<Point> list){
+        double[][] massive = new double[2][list.size()];
+        int i = 0;
+        for(Point pt: list){
+            massive[0][i] = pt.getX();
+            massive[1][i] = pt.getY();
+            i++;
+        }
+        return massive;
     }
 
     public TabulatedFunctionFactory getFactory() {
