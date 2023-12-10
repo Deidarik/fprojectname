@@ -258,8 +258,8 @@ class LinkedListTabulatedFunctionTest  {
         LinkedListTabulatedFunction.Node node = testListFunc.getNode(0);
         while(iterator.hasNext()) {
             ru.ssau.OOP_lab.functions.Point point = iterator.next();
-            assertEquals(node.x, point.x);
-            assertEquals(node.y,point.y);
+            assertEquals(node.x, point.getX());
+            assertEquals(node.y,point.getY());
             node = node.next;
         }
         try{
@@ -272,8 +272,8 @@ class LinkedListTabulatedFunctionTest  {
         node = testListFunc.getNode(0);
         for(Point point: testListFunc)
         {
-            assertEquals(node.x, point.x);
-            assertEquals(node.y,point.y);
+            assertEquals(node.x, point.getX());
+            assertEquals(node.y,point.getY());
             node = node.next;
         }
     }

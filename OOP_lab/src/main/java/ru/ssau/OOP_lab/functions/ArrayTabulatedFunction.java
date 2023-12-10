@@ -278,7 +278,9 @@ for(int i=0;i<xValues.length;++i) { array.xValues[i] = xValues[i];}
 
                 if (!hasNext()) throw new NoSuchElementException();
 
-                Point newPoint = new Point(getX(i), getY(i));
+                Point newPoint = new Point();
+                newPoint.setX(getX(i));
+                newPoint.setY(getY(i));
                 ++i;
                 return newPoint;
 

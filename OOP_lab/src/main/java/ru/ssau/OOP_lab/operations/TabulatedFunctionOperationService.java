@@ -56,11 +56,11 @@ public class TabulatedFunctionOperationService {
         double[] yValues = new double[sizeA];
 
         for (int i = 0; i < sizeA; i++) {
-            xValues[i] = pointsA[i].x;
-            if (Math.abs(pointsA[i].x - pointsB[i].x) > 1e-9)
+            xValues[i] = pointsA[i].getX();
+            if (Math.abs(pointsA[i].getX() - pointsB[i].getX()) > 1e-9)
                 throw new InconsistentFunctionsException("The functions have different x values.");
 
-            yValues[i] = operation.apply(pointsA[i].y, pointsB[i].y);
+            yValues[i] = operation.apply(pointsA[i].getX(), pointsB[i].getX());
         }
 
         return factory.create(xValues, yValues);

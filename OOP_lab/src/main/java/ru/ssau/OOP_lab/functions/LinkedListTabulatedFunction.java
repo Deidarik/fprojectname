@@ -360,7 +360,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             public ru.ssau.OOP_lab.functions.Point next(){
 
                 if(hasNext()){
-                    ru.ssau.OOP_lab.functions.Point point = new Point(curNode.x,curNode.y);
+                    ru.ssau.OOP_lab.functions.Point point = new Point();
+                    point.setX(curNode.x);
+                    point.setY(curNode.y);
                     curNode = curNode.next;
                     tmpCount++;
                     return point;

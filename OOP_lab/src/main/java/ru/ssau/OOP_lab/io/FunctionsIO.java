@@ -20,7 +20,7 @@ public final class FunctionsIO {
         PrintWriter printWriter = new PrintWriter(outputStream);
         printWriter.println(function.getCount());
         for (Point point : function) {
-            printWriter.printf("%f %f\n", point.x, point.y);
+            printWriter.printf("%f %f\n", point.getX(), point.getY());
         }
         printWriter.flush();
     }
@@ -28,8 +28,8 @@ public final class FunctionsIO {
         DataOutputStream dataOutput = new DataOutputStream(outputStream);
         dataOutput.writeInt(function.getCount());
         for(Point point: function){
-            dataOutput.writeDouble(point.x);
-            dataOutput.writeDouble(point.y);
+            dataOutput.writeDouble(point.getX());
+            dataOutput.writeDouble(point.getY());
         }
         dataOutput.flush();
     }

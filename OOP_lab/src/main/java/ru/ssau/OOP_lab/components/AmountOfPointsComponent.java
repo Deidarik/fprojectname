@@ -1,7 +1,7 @@
 package ru.ssau.OOP_lab.components;
 
 public class AmountOfPointsComponent {
-    private Integer amount;
+    private Integer amount = 0;
 
     public Integer getAmount() {
         return amount;

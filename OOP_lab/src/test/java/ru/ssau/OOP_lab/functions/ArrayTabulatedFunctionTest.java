@@ -209,16 +209,16 @@ assertEquals("array values aren't sorted in ascending order", exception.getMessa
         int i = 0;
         while (iterator.hasNext()) {
             Point point = iterator.next();
-            assertEquals(xValues[i], point.x, 0.0001);
-            assertEquals(yValues[i], point.y, 0.0001);
+            assertEquals(xValues[i], point.getX(), 0.0001);
+            assertEquals(yValues[i], point.getY(), 0.0001);
             i++;
         }
         i=0;
         Iterator<Point> iter2 = tabulatedFunction.iterator();
         for (Point point : tabulatedFunction){
             point = iter2.next();
-            assertEquals(point.x,xValues[i]);
-            assertEquals(point.y,yValues[i]);
+            assertEquals(point.getX(),xValues[i]);
+            assertEquals(point.getX(),yValues[i]);
             i++;
         }
     }
