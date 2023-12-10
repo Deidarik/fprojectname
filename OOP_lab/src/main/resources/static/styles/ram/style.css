@@ -179,3 +179,22 @@ display:inline;
 .retrobg-vline { width: 3px; }
 .retrobg-hline + .retrobg-hline { margin-top: 98px; }
 .retrobg-vline + .retrobg-vline { margin-left: 48px; }
+#rt{
+position:relative;
+left:5px;
+top:-45px;
+justify-content:start;
+}
+#rl, #hy{
+font-family: "Brush Script MT", cursive;
+font-size: 20px;
+}
+
+#hy{
+color:rgba(233,221,77);
+}
+
+.container{
+display:flex;
+justify-content:space-around;
+}
