@@ -30,7 +30,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         count = xValues.length;
     }
 
-    ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) throws IllegalArgumentException {
+    public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) throws IllegalArgumentException {
         if (count <2)
             throw new IllegalArgumentException("Size of array less than 2!");
         if (xFrom > xTo) {

@@ -50,9 +50,11 @@ public class TabulatedFunctionController {
                            @ModelAttribute Point point,
                            Model model){
         if(amountOfPoints!= null && size < amountOfPoints.getAmount()) {
-            if( pointList.size() < 1 ||
-                    point.getX() >= pointList.get(pointList.size()-1).getX() &&
-                    point.getY() >= pointList.get(pointList.size()-1).getY() ) {
+            if( pointList.size() < 1
+                ||
+                point.getX() >= pointList.get(pointList.size()-1).getX()
+                &&
+                point.getY() >= pointList.get(pointList.size()-1).getY() ) {
                 pointList.add(point);
                 size++;
             }
@@ -87,8 +89,10 @@ public class TabulatedFunctionController {
             TabulatedFunctionFactory funcFactory = new LinkedListTabulatedFunctionFactory();
             double[][] values = TabulatedFunctionOperationService.listOfPointsAsMassive(pointList);
             TabulatedFunction func = funcFactory.create(values[0],values[1]);
-            LinkedListTabulatedFunctionSerialization.serialize("savedFunctions/linked list/func1.bin",func);
-            System.out.println(LinkedListTabulatedFunctionSerialization.deserialize("savedFunctions/linked list/func1.bin"));
+
+            LinkedListTabulatedFunctionSerialization.serialize("savedFunctions/linked list/funcCreatedWithMassive.bin",func);
+            System.out.println(LinkedListTabulatedFunctionSerialization.deserialize("savedFunctions/linked list/funcCreatedWithMassive.bin"));
+
             model.addAttribute("message", "Tabulated function created");
             valuesReset(amountOfPointsComponent,point,model);
         } else if (amountOfPoints.getAmount() != 0){

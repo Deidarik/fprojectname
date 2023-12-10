@@ -1,42 +1,50 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>All Users</title>
+        <title>Create function</title>
     </head>
-<body>
-    <br>
-    <form action="#" th:action="@{/createTabulatedFunction}" th:object="${amountOfPointsComponent}" method="post">
-        <p>Amount: <input type="number" th:field="*{amount}" required min="2" max="1000" /></p>
-        <p><input name = "submit" type="submit" value="Submit" />
-            <input name = "reset" type="submit" value="Reset" /></p>
-    </form>
-    <br>
-    <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p>
-    <br>
-    <form action = "#" th:action = "@{/createTabulatedFunction}" th:object="${point}" method= "post">
-        <p>X:<label><input type = "number" step="any" th:field = "*{x}" required ></label></p>
-        <p>Y:<label><input type = "number" step="any" th:field = "*{y}" required ></label></p>
-        <p><input name="add" type="submit" value="Add" /></p>
-    </form>
-    <p th:text="${message}"></p>
-    <table style = "border-color:black;">
-        <thead>
-        <tr>
-            <th>X</th>
-            <th>Y</th>
-        </tr>
-        </thead>
+    <body>
+        <h1>Create Tabulated Function</h1>
+        <br>
 
-        <tbody>
-            <tr th:each = "pt: ${points}">
-                <td th:text = "${pt.x}"></td>
-                <td th:text = "${pt.y}"></td>
-            </tr>
-        </tbody>
-    </table>
-    <form action="#" th:action="@{/createTabulatedFunction}"  method="post">
-        <p><input name = "create" type="submit" value="Create" /></p>
-    </form>
-    <p th:text="${notification}"></p>
-</body>
+        <form action="#" th:action="@{/createTabulatedFunction}" th:object="${amountOfPointsComponent}" method="post">
+            <p>Amount: <input type="number" th:field="*{amount}" required min="2" max="1000" /></p>
+            <p><input name = "submit" type="submit" value="Submit" />
+                <input name = "reset" type="submit" value="Reset" /></p>
+        </form>
+
+        <br>
+        <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p>
+        <br>
+
+        <form action = "#" th:action = "@{/createTabulatedFunction}" th:object="${point}" method= "post">
+            <p>X:<label><input type = "number" step="any" th:field = "*{x}" required ></label></p>
+            <p>Y:<label><input type = "number" step="any" th:field = "*{y}" required ></label></p>
+            <p><input name="add" type="submit" value="Add" /></p>
+        </form>
+
+        <p th:text="${message}"></p>
+
+        <table >
+            <thead>
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each = "pt: ${points}">
+                    <td th:text = "${pt.x}"></td>
+                    <td th:text = "${pt.y}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form action="#" th:action="@{/createTabulatedFunction}"  method="post">
+            <p><input name = "create" type="submit" value="Create" /></p>
+        </form>
+
+        <p th:text="${notification}"></p>
+    </body>
 </html>

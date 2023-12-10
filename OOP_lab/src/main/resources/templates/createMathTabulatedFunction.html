@@ -1,9 +1,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>All Users</title>
+    <title>Create function</title>
 </head>
 <body>
+    <h1>Create tabulated function</h1>
     <form action="#" th:action="@{/createMathTabulatedFunction}" th:object="${mathFunction}" method="post">
         <p>Enter x value to start from:
             <input type="number" th:field="*{xFrom}" /></p>
@@ -19,7 +20,6 @@
                 </option>
             </select>
         <input name = "submit" type="submit" value="Submit"  />
-        <p th:text="${message}"></p>
     </form>
 </body>
 </html>

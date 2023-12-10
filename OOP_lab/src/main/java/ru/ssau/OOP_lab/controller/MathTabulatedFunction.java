@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.ssau.OOP_lab.components.MathFunctionComponent;
-import ru.ssau.OOP_lab.functions.IdentityFunction;
-import ru.ssau.OOP_lab.functions.MathFunction;
-import ru.ssau.OOP_lab.functions.SqrFunction;
+import ru.ssau.OOP_lab.functions.*;
+import ru.ssau.OOP_lab.functions.factory.LinkedListTabulatedFunctionFactory;
+import ru.ssau.OOP_lab.functions.factory.TabulatedFunctionFactory;
+import ru.ssau.OOP_lab.io.LinkedListTabulatedFunctionSerialization;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,8 +25,8 @@ public class MathTabulatedFunction {
 
         map.put("Identity Function",new IdentityFunction());
         map.put("Sqr Function",new SqrFunction());
+        map.put("Unit Function",new UnitFunction());
 
-        System.out.println(2);
 
         model.addAttribute("mathFunction",new MathFunctionComponent());
         model.addAttribute("functions",map);
@@ -35,9 +36,16 @@ public class MathTabulatedFunction {
     @RequestMapping(name = "submit", method = RequestMethod.POST)
     public String setForm(@ModelAttribute("mathFunction") MathFunctionComponent component,
                           Model model){
-        model.addAttribute("message", component.getFunction());
-        System.out.println(1);
         model.addAttribute("functions",map);
-        return "createMathTabulatedFunction";
+
+        TabulatedFunctionFactory factory = new LinkedListTabulatedFunctionFactory();
+        TabulatedFunction func = factory.create(map.get(component.getFunction()),
+                                                component.getxFrom(),
+                                                component.getxTo(),
+                                                component.getSize());
+
+        LinkedListTabulatedFunctionSerialization.serialize("savedFunctions/linked list/funcCreatedWithMathFunction.bin",func);
+        System.out.println(LinkedListTabulatedFunctionSerialization.deserialize("savedFunctions/linked list/funcCreatedWithMathFunction.bin"));
+        return "index";
     }
 }
