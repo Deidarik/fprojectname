@@ -1488,12 +1488,27 @@ aside.cyberpunk a:after {
 
 .container_l{
 display:inline-flex;
-flex-wrap:wrap;
+flex-direction:column;
 border-radius: 1em/0.5em;
 background-color:#000;
 margin-top: 10px;
 margin-left:10px;
 }
+
+.o{
+display:inline-block;
+width:300px;
+}
+
+.cont{
+display:flex;
+}
+
+.u{
+display:block;
+height:500 px;
+}
+
 .cont_f{
 display:flex;
 flex-wrap:wrap;
@@ -1517,7 +1532,6 @@ margin-left:10px;
 display:inline-block;
 width:140px;
 position:absolute;
-opasity:0.2;
 border-radius: 1em/0.5em;
 background-color:#000;
 }
@@ -1527,6 +1541,9 @@ margin-left:600px;
 margin-top:-100px;
 width:310px;
 display:inline-block;
+}
 
-
+.container-my{
+display:flex;
+border:solid black 6px;
 }

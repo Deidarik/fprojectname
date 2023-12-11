@@ -1,54 +1,78 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Подключение JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <link th:href="@{/styles/ram/cyberpunk-2077.css}" rel="stylesheet" />
-        <title>Create function</title>
-    </head>
-    <body>
-    <section class="cyberpunk black">
-        <h1>Create Tabulated Function</h1>
-    </section>
-        <br>
-    <section class="cyberpunk">
-        <form action="#" th:action="@{/createTabulatedFunction}" th:object="${amountOfPointsComponent}" method="post">
-            <p>Amount: <input type="number" th:field="*{amount}" required min="2" max="1000" />
-                <input class="cyberpunk" style="background-color:green;" name = "submit" type="submit" value="Submit" />
-                <input  class="cyberpunk" name = "reset" type="submit" value="Reset" /></p>
-        </form>
-
-        <br>
-        <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p>
-        <br>
-    </section>
-    <section class="cyberpunk black">
-        <form action = "#" th:action = "@{/createTabulatedFunction}" th:object="${point}" method= "post">
-            <div class="container_l">
-                <div>X:<label><input type = "number" step="any" th:field = "*{x}" required ></label>
-                </div>
-                <div>
-                Y:<label><input type = "number" step="any" th:field = "*{y}" required ></label>
-                </div>
-            </div>>
-            <input class="cyberpunk" style="background-color:green;" name="add" type="submit" value="Add" />
-        </form>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link th:href="@{/styles/ram/cyberpunk-2077.css}" rel="stylesheet"/>
+    <title>Create function</title>
+</head>
+<body>
+<section class="cyberpunk black">
+    <h1>Create Tabulated Function</h1>
 </section>
-    <div id="cont_l">
+<br>
+<section class="cyberpunk">
+    <form action="#" th:action="@{/createTabulatedFunction}" th:object="${amountOfPointsComponent}" method="post">
+        <div class="row">
+            <div class="col-3">
+                <div class="col"></div>
+                <div style="position:relative">
+                    <div style="position:absolute; margin-bottom:-20px; margin-left:173px; font-style:italic; font-weight:bold">
+                        Amount:
+                    </div>
+                    <div><input type="number" th:field="*{amount}" required min="2" max="1000"/></div>
+                </div>
+            </div>
+            <div class="col-2"><p style="width:200px" class="cyberpunk inverse dotted"
+                                  th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p></div>
+            <div class="col-2"><input style="text-align:center;width:200px;height: 20px; background-color:green"
+                                      class="cyberpunk" name="submit" type="submit" value="Submit"/>
+            </div>
+            <div class="col-2"><input style="width:200px;height: 20px" class="cyberpunk" name="reset" type="submit"
+                                      value="Reset"/>
+            </div>
+            <div class="col"></div>
+        </div>
+    </form>
+
+    <!-- <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p> -->
+</section>
+<section class="cyberpunk black">
+    <form action="#" th:action="@{/createTabulatedFunction}" th:object="${point}" method="post">
+        <div class="cont">
+            <div class="u">
+                <div class="container_l">
+                    <div class="o">X:<label><input type="number" step="any" th:field="*{x}" required></label>
+                    </div>
+                    <div  class="o">
+                        Y:<label><input type="number" step="any" th:field="*{y}" required></label>
+                    </div>
+                </div>
+            </div>
+            <div class="u">
+                <input class="cyberpunk"
+                                  style="text-align:center;width:200px;height: 20px;background-color:green;" name="add"
+                                  type="submit" value="Add"/>
+            </div>
+        </div>
+    </form>
+</section>
+<div id="cont_l">
     <div class="cont_f">
         <div class="circle">X</div>
         <div class="circle">Y</div>
     </div>
-<div class="cont_f" th:each = "pt: ${points}">
-    <div class="circle" th:text = "${pt.x}"></div>
-    <div class="circle" th:text = "${pt.y}"></div>
-</div>
+    <div class="cont_f" th:each="pt: ${points}">
+        <div class="circle" th:text="${pt.x}"></div>
+        <div class="circle" th:text="${pt.y}"></div>
     </div>
-        <form style="margin-left:180px;" action="#" th:action="@{/createTabulatedFunction}"  method="post">
-            <p><input class="cyberpunk" style="background-color:green;" name = "create" type="submit" value="Create" /></p>
-        </form>
-        <p th:text="${notification}"></p>
-    <p id="former" class="cyberpunk scannedv" th:text="${message}"></p>
-    </body>
+</div>
+<form style="margin-left:180px;" action="#" th:action="@{/createTabulatedFunction}" method="post">
+    <p><input class="cyberpunk" style="text-align:center;width:200px;height: 20px;background-color:green;" name="create"
+              type="submit" value="Create"/></p>
+</form>
+<p th:text="${notification}"></p>
+<p id="former" class="cyberpunk scannedv" th:text="${message}"></p>
+</body>
 </html>
