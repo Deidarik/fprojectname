@@ -35,18 +35,20 @@
             <input class="cyberpunk" style="background-color:green;" name="add" type="submit" value="Add" />
         </form>
 </section>
-    <div class="container_l" id="cont_l">
+    <div id="cont_l">
+    <div class="cont_f">
         <div class="circle">X</div>
         <div class="circle">Y</div>
     </div>
-<div class="container_l" th:each = "pt: ${points}" id="cont_l">
+<div class="cont_f" th:each = "pt: ${points}">
     <div class="circle" th:text = "${pt.x}"></div>
     <div class="circle" th:text = "${pt.y}"></div>
 </div>
-        <form style="margin-left:15px" action="#" th:action="@{/createTabulatedFunction}"  method="post">
+    </div>
+        <form style="margin-left:180px;" action="#" th:action="@{/createTabulatedFunction}"  method="post">
             <p><input class="cyberpunk" style="background-color:green;" name = "create" type="submit" value="Create" /></p>
         </form>
         <p th:text="${notification}"></p>
-    <p class="cyberpunk scannedv" th:text="${message}"></p>
+    <p id="former" class="cyberpunk scannedv" th:text="${message}"></p>
     </body>
 </html>
