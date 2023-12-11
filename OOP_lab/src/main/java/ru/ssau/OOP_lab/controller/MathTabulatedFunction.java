@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import ru.ssau.OOP_lab.components.Components;
 import ru.ssau.OOP_lab.components.MathFunctionComponent;
 import ru.ssau.OOP_lab.components.SettingsComponent;
@@ -25,8 +26,9 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/createMathTabulatedFunction")
+@SessionAttributes({"mathFunction"})
 public class MathTabulatedFunction {
-    Map<String,MathFunction> map = new HashMap<>();
+    public static Map<String,MathFunction> map = new HashMap<>();
     @RequestMapping(method = RequestMethod.GET)
     public String getForm(Model model){
 

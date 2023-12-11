@@ -34,16 +34,16 @@
             </div>>
             <input class="cyberpunk" style="background-color:green;" name="add" type="submit" value="Add" />
         </form>
-</section>
+    </section>
     <div id="cont_l">
     <div class="cont_f">
         <div class="circle">X</div>
         <div class="circle">Y</div>
     </div>
-<div class="cont_f" th:each = "pt: ${points}">
-    <div class="circle" th:text = "${pt.x}"></div>
-    <div class="circle" th:text = "${pt.y}"></div>
-</div>
+    <div class="cont_f" th:each = "pt: ${points}">
+        <div class="circle" th:text = "${pt.x}"></div>
+        <div class="circle" th:text = "${pt.y}"></div>
+    </div>
     </div>
         <form style="margin-left:180px;" action="#" th:action="@{/createTabulatedFunction}"  method="post">
             <p><input class="cyberpunk" style="background-color:green;" name = "create" type="submit" value="Create" /></p>
