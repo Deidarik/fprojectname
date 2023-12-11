@@ -4,7 +4,9 @@ import ru.ssau.OOP_lab.functions.ArrayTabulatedFunction;
 import ru.ssau.OOP_lab.functions.MathFunction;
 import ru.ssau.OOP_lab.functions.TabulatedFunction;
 
-public class ArrayTabulatedFunctionFactory implements TabulatedFunctionFactory{
+import java.io.Serializable;
+
+public class ArrayTabulatedFunctionFactory implements TabulatedFunctionFactory, Serializable {
     public ArrayTabulatedFunction create(double[] xValues,double[] yValues){
         return new ArrayTabulatedFunction(xValues,yValues);
     }

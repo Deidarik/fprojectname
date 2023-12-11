@@ -1,6 +1,8 @@
 package ru.ssau.OOP_lab.components;
 
-public class AmountOfPointsComponent {
+import org.springframework.stereotype.Component;
+
+public class AmountOfPointsComponent implements Components {
     private Integer amount = 0;
 
     public Integer getAmount() {

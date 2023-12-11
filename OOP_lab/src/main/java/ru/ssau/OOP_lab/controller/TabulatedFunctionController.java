@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.ssau.OOP_lab.components.AmountOfPointsComponent;
+import ru.ssau.OOP_lab.components.SettingsComponent;
 import ru.ssau.OOP_lab.functions.Point;
 import ru.ssau.OOP_lab.functions.TabulatedFunction;
+import ru.ssau.OOP_lab.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.OOP_lab.functions.factory.LinkedListTabulatedFunctionFactory;
 import ru.ssau.OOP_lab.functions.factory.TabulatedFunctionFactory;
 import ru.ssau.OOP_lab.io.LinkedListTabulatedFunctionSerialization;
+import ru.ssau.OOP_lab.io.TabulatedFunctionSerialization;
 import ru.ssau.OOP_lab.operations.TabulatedFunctionOperationService;
+import ru.ssau.OOP_lab.serializable.SerializeComponents;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,12 +90,19 @@ public class TabulatedFunctionController {
                                           @ModelAttribute Point point,
                                           Model model){
         if(!pointList.isEmpty()) {
-            TabulatedFunctionFactory funcFactory = new LinkedListTabulatedFunctionFactory();
-            double[][] values = TabulatedFunctionOperationService.listOfPointsAsMassive(pointList);
-            TabulatedFunction func = funcFactory.create(values[0],values[1]);
+            TabulatedFunctionFactory factory = new ArrayTabulatedFunctionFactory();
+            try{
+                SettingsComponent comp = SerializeComponents.deserialize("savedFunctions/settings/settings.bin");
+                factory = comp.getFactory();
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
 
-            LinkedListTabulatedFunctionSerialization.serialize("savedFunctions/linked list/funcCreatedWithMassive.bin",func);
-            System.out.println(LinkedListTabulatedFunctionSerialization.deserialize("savedFunctions/linked list/funcCreatedWithMassive.bin"));
+            double[][] values = TabulatedFunctionOperationService.listOfPointsAsMassive(pointList);
+            TabulatedFunction func = factory.create(values[0],values[1]);
+
+            TabulatedFunctionSerialization.serialize("savedFunctions/linked list/funcCreatedWithMassive.bin",func);
+            System.out.println(TabulatedFunctionSerialization.deserialize("savedFunctions/linked list/funcCreatedWithMassive.bin"));
 
             model.addAttribute("message", "Tabulated function created");
             valuesReset(amountOfPointsComponent,point,model);
@@ -100,7 +111,7 @@ public class TabulatedFunctionController {
             model.addAttribute("points", pointList);
             model.addAttribute("notification", "Your list is empty");
         }
-        return "createTabulatedFunction";
+        return "index";
     }
 
 }

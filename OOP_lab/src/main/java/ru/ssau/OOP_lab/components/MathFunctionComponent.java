@@ -3,7 +3,7 @@ package ru.ssau.OOP_lab.components;
 
 import ru.ssau.OOP_lab.functions.MathFunction;
 
-public class MathFunctionComponent {
+public class MathFunctionComponent implements Components {
     private String function;
     private Integer xFrom;
     private Integer xTo;
