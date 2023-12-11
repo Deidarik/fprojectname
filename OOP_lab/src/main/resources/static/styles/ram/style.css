@@ -1,200 +1,93 @@
-html,
-body {
-  margin: 0;
-  height: 100%;
-}
-
-/* ............................................................... */
-/* ............................................................... */
-/* ............................................................... */
-#retrobg {
+@import url("https://fonts.googleapis.com/css?family=Montserrat:700");
+.hero {
+  background-color: #0040C1;
   position: relative;
+  height: 100vh;
   overflow: hidden;
-  height: 100%;
-  color: #a3c;
-  background-color: #000;
+  font-family: "Montserrat", sans-serif;
 }
 
-/* ............................................................... */
-#retrobg-sky {
+.hero__title {
+  color: #fff;
   position: absolute;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  top: 0;
-  width: 100%;
-  height: 55%;
-  background: linear-gradient( #214 75%, #249 );
-}
-
-/* ............................................................... */
-#retrobg-sunWrap {
-  position: relative;
-  width: 40%;
-  margin-bottom: -15%;
-}
-#retrobg-sun {
-  --glow-color: #d44;
-  padding-top: 100%;
-  border-radius: 50%;
-  background-image: linear-gradient( #fcdf11, #ff623f, #fe2085 50% );
-  box-shadow: 0 0 160px 80px var( --glow-color );
-  animation: 2s ease infinite alternate retrobg-sun-glow-anim;
-}
-.retrobg-shutdown #retrobg-sun {
-  background-image: linear-gradient( #000, #000 40% );
-  --glow-color: #000;
-}
-@keyframes retrobg-sun-glow-anim {
-  from { box-shadow: 0 0 160px 80px var( --glow-color ); }
-  to   { box-shadow: 0 0 200px 95px var( --glow-color ); }
-}
-
-/* ............................................................... */
-#retrobg-stars {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.retrobg-star {
-  position: absolute;
-  border-radius: 50%;
-  width: 2px;
-  height: 2px;
-  background-color: #fff;
-}
-
-/* ............................................................... */
-#retrobg-mountains {
-  position: absolute;
-  width: 100%;
-  height: 30%;
-}
-.retrobg-mountain {
-  position: absolute;
-  width: 30%;
-  height: 100%;
-  background-image: linear-gradient( #000 70%, #111 85%, #fff1 );
-}
-#retrobg-mountains-left { left: 0; clip-path: polygon( 0% 100%,0% 55%,5% 60%,10% 55%,20% 50%,25% 42%,30% 38%,33% 35%,40% 45%,50% 50%,60% 70%,70% 85%,75% 82%,80% 91%,85% 90%,90% 95%,95% 98%,100% 100% ); }
-#retrobg-mountains-right { right: 0; clip-path: polygon( 0% 100%,5% 95%,10% 85%,15% 87%,20% 80%,25% 78%,30% 65%,40% 70%,50% 57%,60% 53%,67% 68%,70% 70%,75% 66%,80% 55%,90% 50%,95% 60%,100% 57%,100% 100% ); }
-
-/* ............................................................... */
-#retrobg-cityWrap {
-  position: absolute;
-  width: 50%;
-  margin-left: -1%;
-}
-#retrobg-city {
-  padding-top: 20%;
-}
-.retrobg-building {
-  position: absolute;
-  width: 5%;
-  height: 100%;
-  bottom: 0;
-  border-radius: 4px 4px 0 0;
-  background-image: linear-gradient( 0deg, rgba( 17, 17, 34, 0 ), #112 30px, #000 );
-}
-.retrobg-building:nth-child( odd ) {
-  background-image: linear-gradient( 0deg, rgba( 24, 24, 42, 0 ), #223 30px, #000 );
-}
-.retrobg-antenna::after {
-  content: "";
-  position: absolute;
+  top: 50%;
   left: 50%;
-  margin-left: calc( -1px - 5% );
-  bottom: 100%;
-  width: 10%;
-  min-width: 2px;
-  height: 33%;
-  background-color: #000;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  z-index: 1;
 }
 
-/* ............................................................... */
-#retrobg-ground {
+.cube {
   position: absolute;
-  overflow: hidden;
-  width: 100%;
-  height: 45%;
-  bottom: 0;
-  border-top: 2px solid #bf578c;
-  background-color: #000;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #003298;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  -webkit-animation: cube 3s ease-in forwards infinite;
+          animation: cube 3s ease-in forwards infinite;
 }
-#rt{
-position:relative;
-overflow:hidden;
-display:inline;
-
+.cube:nth-child(2n) {
+  border-color: #0051f4;
 }
-.retrobg-shutdown #retrobg-ground {
-  border-color: #000;
+.cube:nth-child(2) {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  left: 25vw;
+  top: 40vh;
 }
-#retrobg-groundShadow {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient( #000 0%, transparent );
+.cube:nth-child(3) {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  left: 75vw;
+  top: 50vh;
 }
-
-/* ............................................................... */
-#retrobg-linesWrap {
-  height: 100%;
-  perspective: 1000px;
-  perspective-origin: center top;
+.cube:nth-child(4) {
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+  left: 90vw;
+  top: 10vh;
 }
-#retrobg-lines {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transform-origin: top center;
-  animation: .35s linear infinite retrobg-lines-anim;
+.cube:nth-child(5) {
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
+  left: 10vw;
+  top: 85vh;
 }
-.retrobg-shutdown #retrobg-lines {
-  animation-duration: 5s;
-}
-@keyframes retrobg-lines-anim {
-  from { transform: rotateX( 84deg ) translateY( 0 ); }
-  to { transform: rotateX( 84deg ) translateY( 100px ); }
-}
-#retrobg-hlines,
-#retrobg-vlines {
-  position: absolute;
-  left: calc( ( 900% - 100% ) / -2 );
-  width: 900%;
-  height: 500%;
-}
-#retrobg-vlines {
-  display: flex;
-  justify-content: center;
-}
-.retrobg-hline,
-.retrobg-vline {
-  width: 100%;
-  height: 100%;
-  background-color: currentColor;
-}
-.retrobg-hline { height: 3px; }
-.retrobg-vline { width: 3px; }
-.retrobg-hline + .retrobg-hline { margin-top: 98px; }
-.retrobg-vline + .retrobg-vline { margin-left: 48px; }
-#rt{
-position:relative;
-left:5px;
-top:-45px;
-justify-content:start;
-}
-#rl, #hy{
-font-family: "Brush Script MT", cursive;
-font-size: 20px;
+.cube:nth-child(6) {
+  -webkit-animation-delay: 8s;
+          animation-delay: 8s;
+  left: 50vw;
+  top: 10vh;
 }
 
-#hy{
-color:rgba(233,221,77);
+@-webkit-keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
 }
 
-.container{
-display:flex;
-justify-content:space-around;
+@keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+#l{
+margin-top:46%;
+margin-left:600px;
+margin-right:700px;
+height:100%;
 }
