@@ -1485,3 +1485,27 @@ aside.cyberpunk a:after {
 .cyberpunk.black .boxtree > div.resolved *:before {
   background-color: var(--neon-color);
 }
+
+.container_l{
+display:inline-flex;
+flex-wrap:wrap;
+margin-top: 10px;
+margin-left:10px;
+background-color:#000;
+border-radius: 1em/0.5em;
+}
+.circle {
+margin: 5px 5px;
+      width: 3em;
+      height: 3em;
+      border: 5px solid white;
+      border-radius: 50%;
+      line-height: 3em;  /* подробнее про line-height */
+      text-align: center;
+      color:white;
+          background-color:black;
+}
+
+#cont_l{
+width:140px;
+}

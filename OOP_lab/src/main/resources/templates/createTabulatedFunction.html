@@ -4,50 +4,49 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Подключение JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link th:href="@{/styles/ram/cyberpunk-2077.css}" rel="stylesheet" />
         <title>Create function</title>
     </head>
     <body>
+    <section class="cyberpunk black">
         <h1>Create Tabulated Function</h1>
+    </section>
         <br>
-
+    <section class="cyberpunk">
         <form action="#" th:action="@{/createTabulatedFunction}" th:object="${amountOfPointsComponent}" method="post">
-            <p>Amount: <input type="number" th:field="*{amount}" required min="2" max="1000" /></p>
-            <p><input name = "submit" type="submit" value="Submit" />
-                <input name = "reset" type="submit" value="Reset" /></p>
+            <p>Amount: <input type="number" th:field="*{amount}" required min="2" max="1000" />
+                <input class="cyberpunk" style="background-color:green;" name = "submit" type="submit" value="Submit" />
+                <input  class="cyberpunk" name = "reset" type="submit" value="Reset" /></p>
         </form>
 
         <br>
         <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p>
         <br>
-
+    </section>
+    <section class="cyberpunk black">
         <form action = "#" th:action = "@{/createTabulatedFunction}" th:object="${point}" method= "post">
-            <p>X:<label><input type = "number" step="any" th:field = "*{x}" required ></label></p>
-            <p>Y:<label><input type = "number" step="any" th:field = "*{y}" required ></label></p>
-            <p><input name="add" type="submit" value="Add" /></p>
+            <div class="container_l">
+                <div>X:<label><input type = "number" step="any" th:field = "*{x}" required ></label>
+                </div>
+                <div>
+                Y:<label><input type = "number" step="any" th:field = "*{y}" required ></label>
+                </div>
+            </div>>
+            <input class="cyberpunk" style="background-color:green;" name="add" type="submit" value="Add" />
         </form>
-
-        <p th:text="${message}"></p>
-
-        <table >
-            <thead>
-                <tr>
-                    <th>X</th>
-                    <th>Y</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr th:each = "pt: ${points}">
-                    <td th:text = "${pt.x}"></td>
-                    <td th:text = "${pt.y}"></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <form action="#" th:action="@{/createTabulatedFunction}"  method="post">
-            <p><input name = "create" type="submit" value="Create" /></p>
+</section>
+    <div class="container_l" id="cont_l">
+        <div class="circle">X</div>
+        <div class="circle">Y</div>
+    </div>
+<div class="container_l" th:each = "pt: ${points}" id="cont_l">
+    <div class="circle" th:text = "${pt.x}"></div>
+    <div class="circle" th:text = "${pt.y}"></div>
+</div>
+        <form style="margin-left:15px" action="#" th:action="@{/createTabulatedFunction}"  method="post">
+            <p><input class="cyberpunk" style="background-color:green;" name = "create" type="submit" value="Create" /></p>
         </form>
-
         <p th:text="${notification}"></p>
+    <p class="cyberpunk scannedv" th:text="${message}"></p>
     </body>
 </html>
