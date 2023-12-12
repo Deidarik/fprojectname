@@ -36,7 +36,6 @@ public class CalculatorController {
                 }
                 case "createSecondFuncTab" -> {
                     tabulatedFunctionComponent.createTabulatedFunction();
-                    System.out.println(tabulatedFunctionComponent.getFunc());
                     component.setOper2(tabulatedFunctionComponent.getFunc());
                 }
                 case "createFirstFuncMath" -> {
