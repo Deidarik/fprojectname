@@ -93,3 +93,17 @@ margin-left:600px;
 margin-right:700px;
 height:100%;
 }
+
+button {
+  font-size: 1rem;
+  padding: 0.8em 2em;
+ /* background-color: #000;*/
+   background-color:#0040C1
+  border: 3px solid dark;
+
+  border-radius: 1em;
+  color: black;
+  font-weight: bolder;
+  transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s;
+  box-shadow: -5px 5px 0px 0px yellow;
+}
