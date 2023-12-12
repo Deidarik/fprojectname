@@ -8,18 +8,21 @@
 <body>
     <form style = "display: flex;flex-direction: row;" th:action="@{/calculator}" method="post" th:object="${component}">
         <div style = "display: flex;flex-direction: column;">
-
-            <button name = "createFirstFuncTab">Create Tabulated</button>
-            <button name = "createFirstFuncMath">Create Math</button>
-        </div>
-        <div th:object ="${component.oper1}">
-            <div style = "display:flex;flex-direction: row">
-                <div >X</div>
-                <div >Y</div>
+            <div th:object ="${component.oper1}">
+                <div style = "display:flex;flex-direction: row">
+                    <div >X</div>
+                    <div >Y</div>
+                </div>
+                <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.oper1.getCount()-1,1)}">
+                    <div th:text = "${component.oper1.getX(i)}"></div>
+                    <div th:text = "${component.oper1.getY(i)}"></div>
+                </div>
             </div>
-            <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.oper1.getCount()-1,1)}">
-                <div th:text = "${component.oper1.getX(i)}"></div>
-                <div th:text = "${component.oper1.getY(i)}"></div>
+            <div style = "display: flex;flex-direction: column;">
+                <button name = "createFirstFuncTab">Create Tabulated</button>
+                <button name = "createFirstFuncMath">Create Math</button>
+                <button name = "saveFirstFunc">Save</button>
+                <button name = "insertFirstFuncMath">Insert</button>
             </div>
         </div>
 
@@ -32,26 +35,27 @@
                 <option value="divide">/</option>
             </select>
         </div>
-        <div style = "display: flex;flex-direction: column;">
-            <button name = "createFirstFuncTab">Create Tabulated</button>
-            <button name = "createFirstFuncMath">Create Math</button>
-        </div>
-        <div th:object ="${component.oper2}">
-            <div style = "display:flex;flex-direction: row">
-                <div >X</div>
-                <div >Y</div>
-            </div>
-            <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.oper2.getCount()-1,1)}">
 
-                <div th:text = "${component.oper2.getX(i)}"></div>
-                <div th:text = "${component.oper2.getY(i)}"></div>
+
+        <div style = "display: flex;flex-direction: column;">
+            <div th:object ="${component.oper2}">
+                <div style = "display:flex;flex-direction: row">
+                    <div >X</div>
+                    <div >Y</div>
+                </div>
+                <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.oper2.getCount()-1,1)}">
+
+                    <div th:text = "${component.oper2.getX(i)}"></div>
+                    <div th:text = "${component.oper2.getY(i)}"></div>
+                </div>
+            </div>
+            <div style = "display: flex;flex-direction: column;">
+                <button name = "createSecondFuncTab">Create Tabulated</button>
+                <button name = "createSecondFuncMath">Create Math</button>
+                <button name = "saveSecondFunc">Save</button>
+                <button name = "insertSecondFuncMath">Insert</button>
             </div>
         </div>
-        <div style = "display: flex;flex-direction: column;">
-            <button name = "createSecondFuncTab">Create Tabulated</button>
-            <button name = "createSecondFuncMath">Create Math</button>
-        </div>
-
         <div th:object ="${component.result}">
             <div style = "display:flex;flex-direction: row">
                 <div >X</div>
@@ -65,6 +69,8 @@
         </div>
 
         <button type="submit" name="submit">Perform</button>
+        <button name = "saveResultFunc">Save</button>
+
 
     </form>
 

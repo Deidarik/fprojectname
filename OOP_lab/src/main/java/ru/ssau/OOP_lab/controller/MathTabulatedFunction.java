@@ -28,40 +28,28 @@ import java.util.Map;
 @RequestMapping(value = "/createMathTabulatedFunction")
 @SessionAttributes({"mathFunction"})
 public class MathTabulatedFunction {
-    public static Map<String,MathFunction> map = new HashMap<>();
     @RequestMapping(method = RequestMethod.GET)
     public String getForm(Model model){
 
-        map.put("Identity Function",new IdentityFunction());
-        map.put("Sqr Function",new SqrFunction());
-        map.put("Unit Function",new UnitFunction());
+        MathFunctionComponent mathFunctionComponent = new MathFunctionComponent();
+
+        mathFunctionComponent.map.put("Identity Function",new IdentityFunction());
+        mathFunctionComponent.map.put("Sqr Function",new SqrFunction());
+        mathFunctionComponent.map.put("Unit Function",new UnitFunction());
 
 
-        model.addAttribute("mathFunction",new MathFunctionComponent());
-        model.addAttribute("functions",map);
+        model.addAttribute("mathFunction",mathFunctionComponent);
+        model.addAttribute("functions",mathFunctionComponent.map);
 
         return "createMathTabulatedFunction";
     }
     @RequestMapping(name = "submit", method = RequestMethod.POST)
     public String setForm(@ModelAttribute("mathFunction") MathFunctionComponent component,
                           Model model){
-        model.addAttribute("functions",map);
+        model.addAttribute("functions",component.map);
+        component.createTabulatedFunction();
 
-        TabulatedFunctionFactory factory = new ArrayTabulatedFunctionFactory();
-
-        try{
-            SettingsComponent comp = SerializeComponents.deserialize("savedFunctions/settings/settings.bin");
-            factory = comp.getFactory();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
-        TabulatedFunction func = factory.create(map.get(component.getFunction()),
-                                                component.getxFrom(),
-                                                component.getxTo(),
-                                                component.getSize());
-
-        TabulatedFunctionSerialization.serialize("savedFunctions/linked list/funcCreatedWithMathFunction.bin",func);
+        TabulatedFunctionSerialization.serialize("savedFunctions/linked list/funcCreatedWithMathFunction.bin",component.getFunc());
         System.out.println(TabulatedFunctionSerialization.deserialize("savedFunctions/linked list/funcCreatedWithMathFunction.bin"));
 
         return "index";

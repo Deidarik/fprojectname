@@ -12,8 +12,9 @@
     <h1>Create Tabulated Function</h1>
 </section>
 <br>
+<form action="#" th:action="@{/createTabulatedFunction}" th:object="${tabulatedFunctionComponent}" method="post">
 <section class="cyberpunk">
-    <form action="#" th:action="@{/createTabulatedFunction}" th:object="${amountOfPointsComponent}" method="post">
+
         <div class="row">
             <div class="col-3">
                 <div class="col"></div>
@@ -25,7 +26,7 @@
                 </div>
             </div>
             <div class="col-2"><p style="width:200px" class="cyberpunk inverse dotted"
-                                  th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p></div>
+                                  th:text="'Amount: ' + *{amount}"></p></div>
             <div class="col-2"><input style="text-align:center;width:200px;height: 20px; background-color:green"
                                       class="cyberpunk" name="submit" type="submit" value="Submit"/>
             </div>
@@ -34,14 +35,13 @@
             </div>
             <div class="col"></div>
         </div>
-    </form>
+    <
 
     <!-- <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p> -->
 </section>
 <section class="cyberpunk black">
 
-    <form action="#" th:action="@{/createTabulatedFunction}" th:object="${point}" method="post">
-        <div class="cont">
+        <div class="cont" th:object="${tabulatedFunctionComponent.point}">
             <div class="u">
                 <div class="container_l">
                     <div class="o">X:<label><input type="number" step="any" th:field="*{x}" required></label>
@@ -57,7 +57,7 @@
                        type="submit" value="Add"/>
             </div>
         </div>
-    </form>
+
 </section>
 <div class="contik">
 
@@ -67,9 +67,9 @@
                 <div class="circle">X</div>
                 <div class="circle">Y</div>
             </div>
-            <div class="cont_f" th:each="pt: ${points}">
-                <div class="circle" th:text="${pt.x}"></div>
-                <div class="circle" th:text="${pt.y}"></div>
+            <div class="cont_f" th:each = "pt: ${tabulatedFunctionComponent.pointList}">
+                <div class="circle" th:text = "${pt.getX()}"></div>
+                <div class="circle" th:text = "${pt.getY()}"></div>
             </div>
         </div>
 
@@ -77,11 +77,11 @@
 
     <div class="podcontik">
 
-        <form style="margin-left:180px;" action="#" th:action="@{/createTabulatedFunction}" method="post">
+        <div style="margin-left:180px;" >
             <p><input class="cyberpunk" style="text-align:center;width:200px;height: 20px;background-color:green;margin-top: 130px"
                       name="create"
                       type="submit" value="Create"/></p>
-        </form>
+        </div>
 
     </div>
 
@@ -91,5 +91,6 @@
 <p th:text="${notification}"></p>
 <p id="former" class="cyberpunk scannedv" th:text="${message}"></p>
 </div>
+</form>>
 </body>
 </html>

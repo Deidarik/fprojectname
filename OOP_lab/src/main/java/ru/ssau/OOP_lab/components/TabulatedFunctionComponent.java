@@ -15,6 +15,10 @@ public class TabulatedFunctionComponent implements Components {
     private TabulatedFunction func;
     private List<Point> pointList = new ArrayList<>();
 
+
+
+    private Point point = new Point();
+
     public TabulatedFunction getFunc() {
         return func;
     }
@@ -22,7 +26,13 @@ public class TabulatedFunctionComponent implements Components {
     public void setFunc(TabulatedFunction func) {
         this.func = func;
     }
+    public Point getPoint() {
+        return point;
+    }
 
+    public void setPoint(Point point) {
+        this.point = point;
+    }
     public void createTabulatedFunction(){
         TabulatedFunctionFactory factory = new ArrayTabulatedFunctionFactory();
         try{
@@ -34,6 +44,7 @@ public class TabulatedFunctionComponent implements Components {
 
         double[][] values = TabulatedFunctionOperationService.listOfPointsAsMassive(pointList);
         this.func = factory.create(values[0],values[1]);
+
     }
     public List<Point> getPointList() {
         return pointList;

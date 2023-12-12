@@ -19,43 +19,43 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/createTabulatedFunction")
-@SessionAttributes({"tabulatedFunctionComponent","mathFunction"})
+@SessionAttributes({"tabulatedFunctionComponent"})
 public class TabulatedFunctionController {
-
-    private Integer size = 0;
-
-
+    private Integer size;
 
     @RequestMapping(method = RequestMethod.GET)
     public String amountOfPointsForm(Model model){
+
+        size = 0;
+
         TabulatedFunctionComponent functionComponent = new TabulatedFunctionComponent();
         model.addAttribute("tabulatedFunctionComponent",functionComponent );
-        model.addAttribute("point", new Point());
+
         return "createTabulatedFunction";
     }
 
     @RequestMapping(params = "submit", method = RequestMethod.POST)
     public String amountOfPointsSubmit(@ModelAttribute("tabulatedFunctionComponent") TabulatedFunctionComponent tabulatedFunctionComponent,
+                                       @ModelAttribute("point")Point pt,
                                        Model model){
         model.addAttribute("tabulatedFunctionComponent", tabulatedFunctionComponent);
-        model.addAttribute("point", new Point());
         return "createTabulatedFunction";
 
     }
     @RequestMapping(params = "add", method = RequestMethod.POST)
     public String pointAdd(@ModelAttribute("tabulatedFunctionComponent") TabulatedFunctionComponent tabulatedFunctionComponent,
-                           @ModelAttribute("point") Point point,
+
                            Model model){
         Integer amountOfPoints = tabulatedFunctionComponent.getAmount();
         List<Point> pointList= tabulatedFunctionComponent.getPointList();
         if(size < amountOfPoints) {
             if( pointList.size() < 1
                 ||
-                point.getX() >= pointList.get(pointList.size()-1).getX()
+                    tabulatedFunctionComponent.getPoint().getX() >= pointList.get(pointList.size()-1).getX()
                 &&
-                point.getY() >= pointList.get(pointList.size()-1).getY() ) {
+                tabulatedFunctionComponent.getPoint().getY() >= pointList.get(pointList.size()-1).getY() ) {
 
-                pointList.add(point);
+                pointList.add(tabulatedFunctionComponent.getPoint());
                 tabulatedFunctionComponent.setPointList(pointList);
                 size++;
             }
@@ -69,7 +69,7 @@ public class TabulatedFunctionController {
     }
     @RequestMapping(params = "reset",method = RequestMethod.POST)
     public String valuesReset(@ModelAttribute("tabulatedFunctionComponent") TabulatedFunctionComponent tabulatedFunctionComponent,
-                              @ModelAttribute Point point,
+                              @ModelAttribute("point") Point point,
                               Model model){
         tabulatedFunctionComponent.setPointList(new ArrayList<>());
         tabulatedFunctionComponent.setAmount(0);
@@ -93,7 +93,7 @@ public class TabulatedFunctionController {
             model.addAttribute("tabulatedFunctionComponent", tabulatedFunctionComponent);
             model.addAttribute("notification", "Your list is empty");
         }
-        return "createTabulatedFunction";
+        return "index";
     }
 
 }

@@ -18,6 +18,16 @@ public class CalculatorComponent {
     private TabulatedFunction result = new ArrayTabulatedFunction(new double[]{0,0,0,0},new double[]{0,0,0,0});
     private String operation;
 
+    public String getTypeOfFunction() {
+        return typeOfFunction;
+    }
+
+    public void setTypeOfFunction(String typeOfFunction) {
+        this.typeOfFunction = typeOfFunction;
+    }
+
+    private String typeOfFunction;
+
 
     public void setOperationService(TabulatedFunctionFactory factory) {
         this.operationService = new TabulatedFunctionOperationService(factory);
