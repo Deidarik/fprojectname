@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Save second function</title>
+</head>
+<body>
+	<form action="#" th:action="@{/saveSecondFunction}" th:object="${...}" method="post">
+		<p>Enter function name:
+			<input type="number" th:field="*{...}" /></p>
+		<input name = "submit" type="submit" value="Submit"  />
+	</form>
+</body>
+</html>
