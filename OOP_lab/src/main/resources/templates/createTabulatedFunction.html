@@ -13,7 +13,7 @@
 </section>
 <br>
 <form action="#" th:action="@{/createTabulatedFunction}" th:object="${tabulatedFunctionComponent}" method="post">
-<section class="cyberpunk">
+    <section class="cyberpunk">
 
         <div class="row">
             <div class="col-3">
@@ -35,11 +35,10 @@
             </div>
             <div class="col"></div>
         </div>
-    <
 
-    <!-- <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p> -->
-</section>
-<section class="cyberpunk black">
+        <!-- <p th:text="'Amount: ' + ${amountOfPointsComponent.amount}"></p> -->
+    </section>
+    <section class="cyberpunk black">
 
         <div class="cont" th:object="${tabulatedFunctionComponent.point}">
             <div class="u">
@@ -58,39 +57,39 @@
             </div>
         </div>
 
-</section>
-<div class="contik">
+    </section>
+    <div class="contik">
 
-    <div class="podcontik">
-        <div id="cont_l">
-            <div class="cont_f">
-                <div class="circle">X</div>
-                <div class="circle">Y</div>
+        <div class="podcontik">
+            <div id="cont_l" style="margin-top:40px;">
+                <div class="cont_f">
+                    <div class="circle">X</div>
+                    <div class="circle">Y</div>
+                </div>
+                <div class="cont_f" th:each = "pt: ${tabulatedFunctionComponent.pointList}">
+                    <div class="circle" th:text = "${pt.getX()}"></div>
+                    <div class="circle" th:text = "${pt.getY()}"></div>
+                </div>
             </div>
-            <div class="cont_f" th:each = "pt: ${tabulatedFunctionComponent.pointList}">
-                <div class="circle" th:text = "${pt.getX()}"></div>
-                <div class="circle" th:text = "${pt.getY()}"></div>
+
+        </div>
+
+        <div class="podcontik">
+
+            <div style="margin-left:180px;margin-top:25px" >
+                <p><input class="cyberpunk" style="text-align:center;width:200px;height: 20px;background-color:green;margin-top: 130px"
+                          name="create"
+                          type="submit" value="Create"/></p>
             </div>
+
         </div>
 
     </div>
 
-    <div class="podcontik">
-
-        <div style="margin-left:180px;" >
-            <p><input class="cyberpunk" style="text-align:center;width:200px;height: 20px;background-color:green;margin-top: 130px"
-                      name="create"
-                      type="submit" value="Create"/></p>
-        </div>
-
+    <div style="margin-top:-135px">
+        <p th:text="${notification}"></p>
+        <p id="former" class="cyberpunk scannedv" th:text="${message}"></p>
     </div>
-
-</div>
-
-<div style="margin-top:-135px">
-<p th:text="${notification}"></p>
-<p id="former" class="cyberpunk scannedv" th:text="${message}"></p>
-</div>
 </form>>
 </body>
 </html>
