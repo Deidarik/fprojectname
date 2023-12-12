@@ -26,21 +26,21 @@
   border: solid 1px #003298;
   transform-origin: top left;
   transform: scale(0) rotate(0deg) translate(-50%, -50%);
-  -webkit-animation: cube 3s ease-in forwards infinite;
-          animation: cube 3s ease-in forwards infinite;
+  -webkit-animation: cube 4s ease-in forwards infinite;
+          animation: cube 4s ease-in forwards infinite;
 }
 .cube:nth-child(2n) {
   border-color: #0051f4;
 }
 .cube:nth-child(2) {
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
   left: 25vw;
   top: 40vh;
 }
 .cube:nth-child(3) {
-  -webkit-animation-delay: 2s;
-          animation-delay: 2s;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
   left: 75vw;
   top: 50vh;
 }
@@ -86,7 +86,9 @@
 }
 
 #l{
-margin-top:46%;
+position:fixed;
+margin-top:300px;
+margin-bottom:500px;
 margin-left:600px;
 margin-right:700px;
 height:100%;
