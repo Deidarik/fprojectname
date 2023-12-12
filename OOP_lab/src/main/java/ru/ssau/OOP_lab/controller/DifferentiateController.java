@@ -23,45 +23,49 @@ public class DifferentiateController {
     public String getForm(@ModelAttribute("mathFunction") MathFunctionComponent mathFunctionComponent,
                           @ModelAttribute("tabulatedFunctionComponent") TabulatedFunctionComponent tabulatedFunctionComponent,
                           Model model){
-//        if(differentialComponent != null || differentialComponent.getTypeOfFunction() != null) {
-//            switch (differentialComponent.getTypeOfFunction()){
-//                case "FirstFuncTab":
-//                    tabulatedFunctionComponent.createTabulatedFunction();
-//                    differentialComponent.setOper(tabulatedFunctionComponent.getFunc());
-//                    break;
-//                case "FirstFuncMath":
-//                    mathFunctionComponent.createTabulatedFunction();
-//                    differentialComponent.setOper(mathFunctionComponent.getFunc());
-//                    break;
-//            }
-//        }else {
-//            SettingsComponent comp = SerializeComponents.deserialize("savedFunctions/settings/settings.bin");
-//            TabulatedFunctionFactory factory = comp.getFactory();
-//
-//            differentialComponent.setDifferentialOperator(factory);
-//        }
-//        model.addAttribute("differentiateComponent", differentialComponent);
+        if(differentialComponent != null && differentialComponent.getTypeOfFunction() != null) {
+            switch (differentialComponent.getTypeOfFunction()) {
+                case "FirstFuncTab" -> {
+                    tabulatedFunctionComponent.createTabulatedFunction();
+                    ;
+                    differentialComponent.setOper(tabulatedFunctionComponent.getFunc());
+                }
+                case "FirstFuncMath" -> {
+                    mathFunctionComponent.createTabulatedFunction();
+
+                    differentialComponent.setOper(mathFunctionComponent.getFunc());
+                }
+            }
+            differentialComponent.setTypeOfFunction(null);
+        }else {
+            SettingsComponent comp = SerializeComponents.deserialize("savedFunctions/settings/settings.bin");
+            TabulatedFunctionFactory factory = comp.getFactory();
+
+            differentialComponent.setDifferentialOperator(factory);
+        }
+        model.addAttribute("differentiateComponent", differentialComponent);
         return "/differentiate";
     }
     @RequestMapping(params = "createFirstFuncTab",method = RequestMethod.POST)
     public String createFirstFuncTab (@ModelAttribute("differentiateComponent") DifferentialComponent differentialComponent,
                                     Model model){
         differentialComponent.setTypeOfFunction("FirstFuncTab");
-        return "/createTabulatedFunction";
+        return "redirect:/createTabulatedFunction";
     }
     @RequestMapping(params = "createFirstFuncMath",method = RequestMethod.POST)
     public String createFirstFuncMath (@ModelAttribute("differentiateComponent") DifferentialComponent differentialComponent,
                                       Model model){
-        differentialComponent.setTypeOfFunction("createFirstFuncTab");
-        return "/createTabulatedFunction";
+        differentialComponent.setTypeOfFunction("FirstFuncMath");
+        return "redirect:/createMathTabulatedFunction";
     }
     @RequestMapping(params = "submit",method = RequestMethod.POST)
-    public String submitDifferential(@ModelAttribute("differentialComponent")DifferentialComponent differentialComponent,
+    public String submitDifferential(@ModelAttribute("differentiateComponent")DifferentialComponent differentialComponent,
                                      Model model){
         differentialComponent.doDefferentiate();
-        model.addAttribute("differentialComponent", differentialComponent);
+        model.addAttribute("differentiateComponent", differentialComponent);
         return "differentiate";
     }
+
 
 
 }

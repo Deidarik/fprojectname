@@ -2,17 +2,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+
   <meta charset="UTF-8">
   <title>Calculator</title>
 </head>
 <body>
-<form style = "display: flex;flex-direction: row;" th:action="@{/calculator}" method="post" th:object="${differentiateComponent}">
+<form style = "display: flex;flex-direction: row;" th:action="@{/differentiate}" method="post" th:object="${differentiateComponent}">
     <div style = "display: flex;flex-direction: column;">
-        <div style = "display: flex;flex-direction: column;">
 
-            <button name = "createFirstFuncTab">Create Tabulated</button>
-            <button name = "createFirstFuncMath">Create Math</button>
-        </div>
         <div >
             <div style = "display:flex;flex-direction: row">
                 <div >X</div>

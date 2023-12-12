@@ -30,6 +30,7 @@ public class TabulatedFunctionController {
 
         TabulatedFunctionComponent functionComponent = new TabulatedFunctionComponent();
         model.addAttribute("tabulatedFunctionComponent",functionComponent );
+        model.addAttribute("point",new Point());
 
         return "createTabulatedFunction";
     }
@@ -44,18 +45,18 @@ public class TabulatedFunctionController {
     }
     @RequestMapping(params = "add", method = RequestMethod.POST)
     public String pointAdd(@ModelAttribute("tabulatedFunctionComponent") TabulatedFunctionComponent tabulatedFunctionComponent,
-
+                            @ModelAttribute("point")Point point,
                            Model model){
         Integer amountOfPoints = tabulatedFunctionComponent.getAmount();
         List<Point> pointList= tabulatedFunctionComponent.getPointList();
         if(size < amountOfPoints) {
             if( pointList.size() < 1
                 ||
-                    tabulatedFunctionComponent.getPoint().getX() >= pointList.get(pointList.size()-1).getX()
+                    point.getX() >= pointList.get(pointList.size()-1).getX()
                 &&
-                tabulatedFunctionComponent.getPoint().getY() >= pointList.get(pointList.size()-1).getY() ) {
+                    point.getY() >= pointList.get(pointList.size()-1).getY() ) {
 
-                pointList.add(tabulatedFunctionComponent.getPoint());
+                pointList.add(point);
                 tabulatedFunctionComponent.setPointList(pointList);
                 size++;
             }

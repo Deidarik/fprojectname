@@ -17,7 +17,6 @@ public class TabulatedFunctionComponent implements Components {
 
 
 
-    private Point point = new Point();
 
     public TabulatedFunction getFunc() {
         return func;
@@ -26,13 +25,7 @@ public class TabulatedFunctionComponent implements Components {
     public void setFunc(TabulatedFunction func) {
         this.func = func;
     }
-    public Point getPoint() {
-        return point;
-    }
 
-    public void setPoint(Point point) {
-        this.point = point;
-    }
     public void createTabulatedFunction(){
         TabulatedFunctionFactory factory = new ArrayTabulatedFunctionFactory();
         try{
