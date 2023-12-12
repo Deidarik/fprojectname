@@ -42,6 +42,7 @@ public class TabulatedFunctionComponent implements Components {
             System.out.println(e.getMessage());
         }
 
+
         double[][] values = TabulatedFunctionOperationService.listOfPointsAsMassive(pointList);
         this.func = factory.create(values[0],values[1]);
 

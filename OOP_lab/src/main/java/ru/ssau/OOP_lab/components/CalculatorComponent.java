@@ -34,11 +34,13 @@ public class CalculatorComponent {
     }
 
     public void doOperation(){
-        switch (operation) {
-            case "add" -> result = operationService.add(oper1, oper2);
-            case "subtract" -> result = operationService.subtract(oper1, oper2);
-            case "multiply" -> result = operationService.multiplication(oper1, oper2);
-            case "divide" -> result = operationService.division(oper1, oper2);
+        if(oper1.getCount() == oper2.getCount()) {
+            switch (operation) {
+                case "add" -> result = operationService.add(oper1, oper2);
+                case "subtract" -> result = operationService.subtract(oper1, oper2);
+                case "multiply" -> result = operationService.multiplication(oper1, oper2);
+                case "divide" -> result = operationService.division(oper1, oper2);
+            }
         }
     }
     public TabulatedFunction getOper1() {

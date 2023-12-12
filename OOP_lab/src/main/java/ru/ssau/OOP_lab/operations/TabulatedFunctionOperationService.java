@@ -72,7 +72,7 @@ public class TabulatedFunctionOperationService {
             if (Math.abs(pointsA[i].getX() - pointsB[i].getX()) > 1e-9)
                 throw new InconsistentFunctionsException("The functions have different x values.");
 
-            yValues[i] = operation.apply(pointsA[i].getX(), pointsB[i].getX());
+            yValues[i] = operation.apply(pointsA[i].getY(), pointsB[i].getY());
         }
 
         return factory.create(xValues, yValues);

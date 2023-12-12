@@ -10,8 +10,8 @@
         <div style = "display: flex;flex-direction: column;">
             <div th:object ="${component.oper1}">
                 <div style = "display:flex;flex-direction: row">
-                    <div >X</div>
-                    <div >Y</div>
+                    <div>X</div>
+                    <div>Y</div>
                 </div>
                 <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.oper1.getCount()-1,1)}">
                     <div th:text = "${component.oper1.getX(i)}"></div>

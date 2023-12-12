@@ -53,6 +53,8 @@ public class CalculatorController {
 
             SettingsComponent comp = SerializeComponents.deserialize("savedFunctions/settings/settings.bin");
             TabulatedFunctionFactory factory = comp.getFactory();
+
+            component.setOperationService(factory);
         }
         model.addAttribute("component", component);
 
