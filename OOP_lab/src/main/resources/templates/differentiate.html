@@ -13,7 +13,7 @@
             <button name = "createFirstFuncTab">Create Tabulated</button>
             <button name = "createFirstFuncMath">Create Math</button>
         </div>
-        <div th:object ="${differentiateComponent.oper}">
+        <div >
             <div style = "display:flex;flex-direction: row">
                 <div >X</div>
                 <div >Y</div>
@@ -34,15 +34,15 @@
         =
     </div>
 
-    <div th:object ="${component.result}">
+    <div >
         <div style = "display:flex;flex-direction: row">
             <div >X</div>
             <div >Y</div>
         </div>
-        <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.result.getCount()-1,1)}">
+        <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,differentiateComponent.result.getCount()-1,1)}">
 
-            <div th:text = "${component.result.getX(i)}"></div>
-            <div th:text = "${component.result.getY(i)}"></div>
+            <div th:text = "${differentiateComponent.result.getX(i)}"></div>
+            <div th:text = "${differentiateComponent.result.getY(i)}"></div>
         </div>
     </div>
   <button type="submit" name="submit">Perform</button>
