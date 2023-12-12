@@ -3,12 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
-<body>
-    <p>Get your greeting <a href="/greeting">here</a></p>
-    <p>Settings <a href="/settings">here</a></p>
-    <p>Create tabulated function with Massive constructor <a href = "/createTabulatedFunction"> here </a></p>
-    <p>Create tabulated function with MathFunction constructor<a href = "/createMathTabulatedFunction"> here </a></p>
-    <p>Calculator <a href="/calculator">here</a></p>
+<body style="background-color:#6495ed">
+<nav style="height:80px" class="navbar navbar-light bg-dark">
+    <div class="badge bg-primary bg-pill"
+         style="width: 18rem;height:60px;line-height:54px;margin-left:auto;margin-right:auto;font-size:1.2em; vertical-align:middle">
+        Welcome to our Web-app!
+    </div>
+</nav>
+<div class="row">
+    <div class="col-4">
+        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
+           <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px;line-height:60px;vertical-align:middle">Get your greeting <a style="color:white" href="/greeting">here</a>
+           </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
+            <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px;line-height:60px;vertical-align:middle">  Settings <a style="color:white" href="/settings">here</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
+            <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px">
+                Create tabulated function with Massive constructor <a style="color:white" href="/createTabulatedFunction"> here </a>
+        </div>
+    </div>
+   </div>
+    <div class="col-4">
+        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
+            <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px">
+                Create tabulated function with MathFunction constructor<a style="color:white" href="/createMathTabulatedFunction"> here </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
+            <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px;line-height:60px;vertical-align:middle">
+                Calculator <a style="color:white" href="/calculator">here</a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
-</html>
