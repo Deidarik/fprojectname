@@ -93,4 +93,22 @@ public class CalculatorController {
         component.setTypeOfFunction("createFirstFuncMath");
         return "redirect:/createMathTabulatedFunction";
     }
+    @RequestMapping(params = "saveSecondFunc", method = RequestMethod.POST)
+    public String saveSecondFunc(@ModelAttribute("component")CalculatorComponent component,
+                                      Model model){
+        component.setTypeOfFunction("SecondFunc");
+        return "redirect:/saveFunction";
+    }
+    @RequestMapping(params = "saveFirstFunc", method = RequestMethod.POST)
+    public String saveFirstFunc(@ModelAttribute("component")CalculatorComponent component,
+                                 Model model){
+        component.setTypeOfFunction("FirstFunc");
+        return "redirect:/saveFunction";
+    }
+    @RequestMapping(params = "saveResultFunc", method = RequestMethod.POST)
+    public String saveResultFunc(@ModelAttribute("component")CalculatorComponent component,
+                                Model model){
+        component.setTypeOfFunction("ResultFunc");
+        return "redirect:/saveFunction";
+    }
 }
