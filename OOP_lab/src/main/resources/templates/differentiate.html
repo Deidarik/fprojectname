@@ -5,46 +5,62 @@
 
   <meta charset="UTF-8">
   <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link th:href="@{/styles/ram/style.css}" rel="stylesheet"/>
 </head>
-<body>
-<form style = "display: flex;flex-direction: row;" th:action="@{/differentiate}" method="post" th:object="${differentiateComponent}">
-    <div style = "display: flex;flex-direction: column;">
+<body class="hero">
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+
+<div id="fcont" class="container mt-3">
+
+    <div style="height:300px" id="scont" class="container mt-3">
+
+<form style = "display: flex;flex-direction: row;justify-content:space-between" th:action="@{/differentiate}" method="post" th:object="${differentiateComponent}">
+    <div style = "display: flex;flex-direction: column">
 
         <div >
             <div style = "display:flex;flex-direction: row">
-                <div >X</div>
-                <div >Y</div>
+                <div style="margin-left:5px;margin-top:4px" class="badge pill-rounded bg-light text-dark" >X</div>
+                <div style="margin-left:15px;margin-top:4px" class="badge pill-rounded bg-light text-dark" >Y</div>
             </div>
             <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,differentiateComponent.oper.getCount()-1,1)}">
-                <div th:text = "${differentiateComponent.oper.getX(i)}"></div>
-                <div th:text = "${differentiateComponent.oper.getY(i)}"></div>
+                <div style="margin-left:5px;margin-top:4px" class="badge pill-rounded bg-light text-dark" th:text = "${differentiateComponent.oper.getX(i)}"></div>
+                <div style="margin-left:5px;margin-top:4px" class="badge pill-rounded bg-light text-dark" th:text = "${differentiateComponent.oper.getY(i)}"></div>
             </div>
         </div>
 
 
         <div style = "display: flex;flex-direction: column;">
-            <button name = "createFirstFuncTab">Create Tabulated</button>
-            <button name = "createFirstFuncMath">Create Math</button>
+            <button style="margin-top:5px" name = "createFirstFuncTab">Create Tabulated</button>
+            <button style="margin-top:5px;margin-left:10px" name = "createFirstFuncMath">Create Math</button>
         </div>
     </div>
     <div>
-        =
     </div>
 
     <div >
         <div style = "display:flex;flex-direction: row">
-            <div >X</div>
-            <div >Y</div>
+            <div style="margin-left:5px;margin-top:4px" class="badge pill-rounded bg-light text-dark">X_res</div>
+            <div style="margin-left:15px;margin-top:4px" class="badge pill-rounded bg-light text-dark">Y_res</div>
         </div>
         <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,differentiateComponent.result.getCount()-1,1)}">
 
-            <div th:text = "${differentiateComponent.result.getX(i)}"></div>
-            <div th:text = "${differentiateComponent.result.getY(i)}"></div>
+            <div style="margin-left:5px;margin-top:4px" class="badge pill-rounded bg-light text-dark" th:text = "${differentiateComponent.result.getX(i)}"></div>
+            <div style="margin-left:5px;margin-top:4px" class="badge pill-rounded bg-light text-dark" th:text = "${differentiateComponent.result.getY(i)}"></div>
         </div>
     </div>
-  <button type="submit" name="submit">Perform</button>
+  <button style="margin-top:5px;height:80px;width:170px" type="submit" name="submit">Perform</button>
 
 </form>
 
+    </div>
+</div>
 </body>
 </html>

@@ -107,3 +107,43 @@ button {
   transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s;
   box-shadow: -5px 5px 0px 0px yellow;
 }
+
+#fcont{
+display:flex;
+justify-content:center;
+position:relative;
+}
+
+#scont{
+display:block;
+position:absolute;
+border: 3px solid white;
+margin-top:200px;
+margin-bottom:200px;
+height:700px;
+width:720px;
+flex-wrap:wrap;
+}
+
+#thcont{
+display:flex;
+flex-wrap:wrap;
+}
+
+#thcont_f{
+display: flex;
+flex-direction: column;
+}
+
+#thcont_f_b{
+display: flex;
+flex-direction: column;
+}
+
+#sel{
+display: flex;
+flex-direction: column;
+margin-left:15px;
+margin-right:15px;
+margin-top: 150px;
+}
