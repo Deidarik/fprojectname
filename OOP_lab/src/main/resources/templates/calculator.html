@@ -4,8 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link th:href="@{/styles/ram/style.css}" rel="stylesheet" />
 </head>
-<body>
+<body class="hero">
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
     <form style = "display: flex;flex-direction: row;" th:action="@{/calculator}" method="post" th:object="${component}">
         <div style = "display: flex;flex-direction: column;">
             <div th:object ="${component.oper1}">
@@ -18,61 +28,65 @@
                     <div th:text = "${component.oper1.getY(i)}"></div>
                 </div>
             </div>
-            <div style = "display: flex;flex-direction: column;">
-                <button name = "createFirstFuncTab">Create Tabulated</button>
+            <!--<div style = "display: flex;flex-direction: column;">-->
+            <button>
+                Button
+            </button>
+            <button><span class="text">Hover me</span><span>Thanks!</span></button>
+                <button name = "createFirstFuncTab"><span>Create Tabulated</span></button>
                 <button name = "createFirstFuncMath">Create Math</button>
                 <button name = "saveFirstFunc">Save</button>
                 <button name = "insertFirstFuncMath">Insert</button>
-            </div>
-        </div>
+            <!--  </div>-->
+          </div>
 
-        <div style = "display: flex;flex-direction: column;" >
-            <label for="operation"></label>
-            <select id="operation" name="operation" th:field="*{operation}" >
-                <option value="add">+</option>
-                <option value="subtract">-</option>
-                <option value="multiply">*</option>
-                <option value="divide">/</option>
-            </select>
-        </div>
-
-
-        <div style = "display: flex;flex-direction: column;">
-            <div th:object ="${component.oper2}">
-                <div style = "display:flex;flex-direction: row">
-                    <div >X</div>
-                    <div >Y</div>
-                </div>
-                <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.oper2.getCount()-1,1)}">
-
-                    <div th:text = "${component.oper2.getX(i)}"></div>
-                    <div th:text = "${component.oper2.getY(i)}"></div>
-                </div>
-            </div>
-            <div style = "display: flex;flex-direction: column;">
-                <button name = "createSecondFuncTab">Create Tabulated</button>
-                <button name = "createSecondFuncMath">Create Math</button>
-                <button name = "saveSecondFunc">Save</button>
-                <button name = "insertSecondFuncMath">Insert</button>
-            </div>
-        </div>
-        <div th:object ="${component.result}">
-            <div style = "display:flex;flex-direction: row">
-                <div >X</div>
-                <div >Y</div>
-            </div>
-            <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.result.getCount()-1,1)}">
-
-                <div th:text = "${component.result.getX(i)}"></div>
-                <div th:text = "${component.result.getY(i)}"></div>
-            </div>
-        </div>
-
-        <button type="submit" name="submit">Perform</button>
-        <button name = "saveResultFunc">Save</button>
+          <div style = "display: flex;flex-direction: column;" >
+              <label for="operation"></label>
+              <select id="operation" name="operation" th:field="*{operation}" >
+                  <option value="add">+</option>
+                  <option value="subtract">-</option>
+                  <option value="multiply">*</option>
+                  <option value="divide">/</option>
+              </select>
+          </div>
 
 
-    </form>
+          <div style = "display: flex;flex-direction: column;">
+              <div th:object ="${component.oper2}">
+                  <div style = "display:flex;flex-direction: row">
+                      <div >X</div>
+                      <div >Y</div>
+                  </div>
+                  <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.oper2.getCount()-1,1)}">
 
-</body>
-</html>
+                      <div th:text = "${component.oper2.getX(i)}"></div>
+                      <div th:text = "${component.oper2.getY(i)}"></div>
+                  </div>
+              </div>
+              <div style = "display: flex;flex-direction: column;">
+                  <button name = "createSecondFuncTab">Create Tabulated</button>
+                  <button name = "createSecondFuncMath">Create Math</button>
+                  <button name = "saveSecondFunc">Save</button>
+                  <button name = "insertSecondFuncMath">Insert</button>
+              </div>
+          </div>
+          <div th:object ="${component.result}">
+              <div style = "display:flex;flex-direction: row">
+                  <div >X</div>
+                  <div >Y</div>
+              </div>
+              <div style="display:flex;flex-direction: row" th:each = "i: ${#numbers.sequence(0,component.result.getCount()-1,1)}">
+
+                  <div th:text = "${component.result.getX(i)}"></div>
+                  <div th:text = "${component.result.getY(i)}"></div>
+              </div>
+          </div>
+
+          <button type="submit" name="submit">Perform</button>
+          <button name = "saveResultFunc">Save</button>
+
+
+      </form>
+
+  </body>
+  </html>
