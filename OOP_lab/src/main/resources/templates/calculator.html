@@ -47,6 +47,10 @@
                 <div th:text = "${component.oper2.getY(i)}"></div>
             </div>
         </div>
+        <div style = "display: flex;flex-direction: column;">
+            <button name = "createSecondFuncTab">Create Tabulated</button>
+            <button name = "createSecondFuncMath">Create Math</button>
+        </div>
 
         <div th:object ="${component.result}">
             <div style = "display:flex;flex-direction: row">
