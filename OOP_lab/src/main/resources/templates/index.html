@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
@@ -8,53 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
-<body style="background-color:#6495ed">
-<nav style="height:80px" class="navbar navbar-light bg-dark">
-    <div class="badge bg-primary bg-pill"
-         style="width: 18rem;height:60px;line-height:54px;margin-left:auto;margin-right:auto;font-size:1.2em; vertical-align:middle">
-        Welcome to our Web-app!
-    </div>
-</nav>
-<div class="row">
-    <div class="col-4">
-        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
-           <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px;line-height:60px;vertical-align:middle"> <a style="color:white" href="/greeting">Get your greeting</a>
-           </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
-            <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px;line-height:60px;vertical-align:middle">   <a style="color:white" href="/settings">Settings</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
-            <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px">
-                <a style="color:white" href="/createTabulatedFunction"> Create tabulated function with Massive constructor </a>
-        </div>
-    </div>
-   </div>
-    <div class="col-4">
-        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
-            <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px">
-                <a style="color:white" href="/createMathTabulatedFunction">Create tabulated function with MathFunction constructor</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
-            <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px;line-height:60px;vertical-align:middle">
-                <a style="color:white" href="/calculator"> Calculator </a>
-            </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div style="box-sizing: border-box;width: 280px;height: 66px;border: 2px dashed black;position:relative;background-color:white;margin-top:10px;text-align:center;margin-left:30px">
-            <div style="background-color:#6495ed;position:absolute;border: 4px groove black;height:60px;width:270px;line-height:60px;vertical-align:middle">
-                <a style="color:white" href="/differentiate">Differentiate here</a>
-            </div>
-        </div>
-    </div>
-</div>
+<body>
+    <button name = "startBut"><a href = "/main">Start</a></button>
+
 </body>

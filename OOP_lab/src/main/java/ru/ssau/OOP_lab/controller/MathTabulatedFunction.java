@@ -29,9 +29,9 @@ import java.util.Map;
 @SessionAttributes({"mathFunction"})
 public class MathTabulatedFunction {
     @RequestMapping(method = RequestMethod.GET)
-    public String getForm(Model model){
+    public String getForm(@ModelAttribute("mathFunction")MathFunctionComponent mathFunctionComponent,
+            Model model){
 
-        MathFunctionComponent mathFunctionComponent = new MathFunctionComponent();
 
         mathFunctionComponent.map.put("Identity Function",new IdentityFunction());
         mathFunctionComponent.map.put("Sqr Function",new SqrFunction());
@@ -52,6 +52,6 @@ public class MathTabulatedFunction {
         TabulatedFunctionSerialization.serialize("savedFunctions/linked list/funcCreatedWithMathFunction.bin",component.getFunc());
         System.out.println(TabulatedFunctionSerialization.deserialize("savedFunctions/linked list/funcCreatedWithMathFunction.bin"));
 
-        return "index";
+        return "main";
     }
 }

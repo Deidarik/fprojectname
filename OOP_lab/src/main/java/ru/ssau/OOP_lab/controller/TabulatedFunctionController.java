@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/createTabulatedFunction")
-@SessionAttributes({"tabulatedFunctionComponent"})
+@SessionAttributes({"mathFunction","tabulatedFunctionComponent","component"})
 public class TabulatedFunctionController {
     private Integer size;
 
@@ -27,9 +27,6 @@ public class TabulatedFunctionController {
     public String amountOfPointsForm(Model model){
 
         size = 0;
-
-        TabulatedFunctionComponent functionComponent = new TabulatedFunctionComponent();
-        model.addAttribute("tabulatedFunctionComponent",functionComponent );
         model.addAttribute("point",new Point());
 
         return "createTabulatedFunction";
@@ -94,7 +91,7 @@ public class TabulatedFunctionController {
             model.addAttribute("tabulatedFunctionComponent", tabulatedFunctionComponent);
             model.addAttribute("notification", "Your list is empty");
         }
-        return "index";
+        return "main";
     }
 
 }
